@@ -1,0 +1,173 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.0'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'com.google.cloud.tools.jib' version '3.4.0'
+}
+
+group = 'com.contentshub'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Spring Boot WebFlux (Reactive)
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+	// Spring Security Reactive
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-messaging'
+
+	// JWT
+	implementation 'io.jsonwebtoken:jjwt-api:0.12.6'  // Versión actualizada
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+
+	// PostgreSQL con R2DBC (Reactive)
+	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+	implementation 'org.postgresql:r2dbc-postgresql'
+	implementation 'org.postgresql:postgresql'
+
+	// MongoDB Reactive
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
+
+	// Redis Reactive
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
+	implementation 'io.lettuce:lettuce-core'
+
+	// Validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// Actuator para monitoreo
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'io.micrometer:micrometer-registry-prometheus'
+
+	// Jackson para JSON processing avanzado
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+	implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// MapStruct para DTOs
+	implementation 'org.mapstruct:mapstruct:1.6.2'  // Versión actualizada
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.2'
+
+	// Documentation
+	implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.6.0'  // Versión actualizada
+
+	// Resilience4j para circuit breaker
+	implementation 'io.github.resilience4j:resilience4j-spring-boot3:2.2.0'
+	implementation 'io.github.resilience4j:resilience4j-reactor:2.2.0'
+
+	// Caffeine Cache (adicional a Redis)
+	implementation 'com.github.ben-manes.caffeine:caffeine'
+
+	// Event Processing
+	implementation 'org.springframework:spring-context-support'
+
+	// Testing
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+
+	// TestContainers - Versiones más recientes
+	testImplementation 'org.testcontainers:testcontainers:1.20.3'
+	testImplementation 'org.testcontainers:junit-jupiter:1.20.3'
+	testImplementation 'org.testcontainers:postgresql:1.20.3'
+	testImplementation 'org.testcontainers:mongodb:1.20.3'
+	testImplementation 'org.testcontainers:r2dbc:1.20.3'
+
+	// WireMock para testing APIs externas
+	testImplementation 'com.github.tomakehurst:wiremock-jre8:3.0.1'
+
+	// Development tools
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+	// Para usar TestContainers más eficientemente
+	systemProperty 'testcontainers.reuse.enable', 'true'
+}
+
+// Configuración para Jib (Docker)
+jib {
+	from {
+		image = 'eclipse-temurin:21-jre-alpine'  // Actualizado a Java 21
+	}
+	to {
+		image = 'contentshub/backend'
+		tags = ['latest', version]
+	}
+	container {
+		jvmFlags = ['-Xms512m', '-Xmx2048m', '--enable-preview']  // Preview features para Java 21
+		mainClass = 'com.contentshub.ContentHubApplication'
+		ports = ['8080']
+		environment = [
+				'SPRING_PROFILES_ACTIVE': 'prod'
+		]
+		labels = [
+				'maintainer': 'Content Hub Team',
+				'version': version
+		]
+	}
+}
+
+// Task personalizada para generar documentación
+tasks.register('generateApiDocs', JavaExec) {
+	group = 'documentation'
+	description = 'Generate API documentation'
+	classpath = sourceSets.main.runtimeClasspath
+	mainClass = 'org.springdoc.webflux.api.OpenApiWebfluxResource'
+}
+
+// Task para setup inicial del proyecto
+tasks.register('setupProject') {
+	group = 'setup'
+	description = 'Setup initial project structure'
+	doLast {
+		// Crear estructura de directorios
+		project.file('src/main/java/com/contentshub/adapter/input/web').mkdirs()
+		project.file('src/main/java/com/contentshub/adapter/input/websocket').mkdirs()
+		project.file('src/main/java/com/contentshub/adapter/input/event').mkdirs()
+		project.file('src/main/java/com/contentshub/adapter/output/persistence/r2dbc').mkdirs()
+		project.file('src/main/java/com/contentshub/adapter/output/persistence/mongodb').mkdirs()
+		project.file('src/main/java/com/contentshub/adapter/output/persistence/redis').mkdirs()
+		project.file('src/main/java/com/contentshub/adapter/output/external').mkdirs()
+		project.file('src/main/java/com/contentshub/adapter/output/messaging').mkdirs()
+		project.file('src/main/java/com/contentshub/application/usecase').mkdirs()
+		project.file('src/main/java/com/contentshub/application/port/input').mkdirs()
+		project.file('src/main/java/com/contentshub/application/port/output').mkdirs()
+		project.file('src/main/java/com/contentshub/application/security').mkdirs()
+		project.file('src/main/java/com/contentshub/domain/model').mkdirs()
+		project.file('src/main/java/com/contentshub/domain/valueobject').mkdirs()
+		project.file('src/main/java/com/contentshub/domain/event').mkdirs()
+		project.file('src/main/java/com/contentshub/domain/exception').mkdirs()
+		project.file('src/main/java/com/contentshub/infrastructure/config').mkdirs()
+		project.file('src/main/java/com/contentshub/infrastructure/security').mkdirs()
+		project.file('src/main/java/com/contentshub/infrastructure/exception').mkdirs()
+		project.file('src/main/resources/db/migration').mkdirs()
+		project.file('src/test/java/com/contentshub/integration').mkdirs()
+		project.file('src/test/java/com/contentshub/unit').mkdirs()
+		project.file('uploads').mkdirs()
+		project.file('logs').mkdirs()
+
+		println "✅ Estructura de proyecto creada exitosamente!"
+	}
+}

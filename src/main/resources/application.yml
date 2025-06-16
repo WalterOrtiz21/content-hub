@@ -1,0 +1,171 @@
+spring:
+  application:
+    name: realtime-content-hub
+
+  # Configuración de perfiles
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+
+  # WebFlux Configuration
+  webflux:
+    base-path: /api/v1
+    static-resources:
+      locations: classpath:/static/
+
+  # R2DBC PostgreSQL Configuration
+  r2dbc:
+    url: r2dbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:contentshub}
+    username: ${DB_USERNAME:contentshub}
+    password: ${DB_PASSWORD:contentshub123}
+    pool:
+      initial-size: 5
+      max-size: 20
+      max-idle-time: 30m
+      max-acquire-time: 3s
+      max-create-connection-time: 3s
+
+  # MongoDB Configuration
+  data:
+    mongodb:
+      uri: mongodb://${MONGO_USERNAME:contentshub}:${MONGO_PASSWORD:contentshub123}@${MONGO_HOST:localhost}:${MONGO_PORT:27017}/${MONGO_DATABASE:contentshub}?authSource=admin
+      auto-index-creation: true
+
+    # Redis Configuration
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:contentshub123}
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+          max-wait: -1ms
+
+  # Security Configuration
+  security:
+    jwt:
+      secret: ${JWT_SECRET:mySecretKeyForJWTTokenGenerationMustBeVeryLongAndSecure2024}
+      expiration: ${JWT_EXPIRATION:86400000}
+      refresh-expiration: 604800000
+
+  # Session Management with Redis
+  session:
+    store-type: redis
+    redis:
+      namespace: contentshub:session
+      flush-mode: on-save
+      cleanup-cron: "0 * * * * *"
+
+# Management (Actuator)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+      base-path: /management
+  endpoint:
+    health:
+      show-details: when-authorized
+      probes:
+        enabled: true
+
+# Server Configuration
+server:
+  port: ${PORT:8080}
+  compression:
+    enabled: true
+  http2:
+    enabled: true
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: on_param
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    com.contentshub: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.data: DEBUG
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
+
+# OpenAPI Documentation
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+
+# Application Configuration
+app:
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:3000,http://localhost:5173}
+    allowed-methods: GET,POST,PUT,DELETE,OPTIONS,PATCH
+    allowed-headers: "*"
+    allow-credentials: true
+    max-age: 3600
+
+  websocket:
+    endpoint: /ws
+    allowed-origins: ${WS_ALLOWED_ORIGINS:*}
+
+  content:
+    max-file-size: 50MB
+    allowed-file-types: jpg,jpeg,png,gif,pdf,doc,docx,txt,md
+    storage-path: ${CONTENT_STORAGE_PATH:./uploads}
+
+  cache:
+    default-ttl: 3600
+    user-cache-ttl: 1800
+    content-cache-ttl: 7200
+
+---
+# Configuración para desarrollo
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  devtools:
+    restart:
+      enabled: true
+
+  security:
+    jwt:
+      expiration: 7200000 # 2 horas en desarrollo
+
+---
+# Configuración para testing
+spring:
+  config:
+    activate:
+      on-profile: test
+
+  main:
+    lazy-initialization: true
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/contentshub
+    username: contentshub
+    password: contentshub123
+
+  data:
+    mongodb:
+      uri: mongodb://contentshub:contentshub123@localhost:27017/contentshub?authSource=admin
+    redis:
+      password: contentshub123
+
+logging:
+  level:
+    root: WARN
+    com.contentshub: DEBUG
+
+app:
+  cache:
+    default-ttl: 5

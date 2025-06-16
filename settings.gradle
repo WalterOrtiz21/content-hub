@@ -1,0 +1,12 @@
+rootProject.name = 'realtime-content-hub'
+
+// Configuración para mejorar el rendimiento de Gradle
+//gradle.startParameter.excludedTaskNames.add('spotlessCheck')
+
+// Habilitar el build cache
+buildCache {
+    local {
+        enabled = true
+        removeUnusedEntriesAfterDays = 30
+    }
+}

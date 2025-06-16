@@ -1,0 +1,1093 @@
+2025-06-16 23:19:22 [restartedMain] INFO  c.contentshub.ContentHubApplication - Starting ContentHubApplication using Java 17.0.3 with PID 67368 (D:\Documentos\Juguete\content-hub\build\classes\java\main started by walte in D:\Documentos\Juguete\content-hub)
+2025-06-16 23:19:22 [restartedMain] DEBUG c.contentshub.ContentHubApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-16 23:19:22 [restartedMain] INFO  c.contentshub.ContentHubApplication - The following 1 profile is active: "dev"
+2025-06-16 23:19:23 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-16 23:19:23 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2025-06-16 23:19:23 [restartedMain] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Scanning for R2DBC repositories in packages com.contentshub.infrastructure.persistence.r2dbc.
+2025-06-16 23:19:23 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 0 R2DBC repository interfaces.
+2025-06-16 23:19:23 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-16 23:19:23 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2025-06-16 23:19:23 [restartedMain] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Scanning for Reactive MongoDB repositories in packages com.contentshub.infrastructure.persistence.mongodb.
+2025-06-16 23:19:23 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 0 ms. Found 0 Reactive MongoDB repository interfaces.
+2025-06-16 23:19:23 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-16 23:19:23 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-16 23:19:23 [restartedMain] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Scanning for Redis repositories in packages com.contentshub.infrastructure.persistence.redis.
+2025-06-16 23:19:23 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 0 ms. Found 0 Redis repository interfaces.
+2025-06-16 23:19:23 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.support.BeanDefinitionOverrideException: Invalid bean definition with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Cannot register bean definition [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration$EnableWebMvcConfiguration; factoryMethodName=requestMappingHandlerMapping; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]] for bean 'requestMappingHandlerMapping' since there is already [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=org.springframework.web.reactive.config.DelegatingWebFluxConfiguration; factoryMethodName=requestMappingHandlerMapping; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in org.springframework.web.reactive.config.DelegatingWebFluxConfiguration] bound.
+2025-06-16 23:19:23 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The bean 'requestMappingHandlerMapping', defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class], could not be registered. A bean with that name has already been defined in org.springframework.web.reactive.config.DelegatingWebFluxConfiguration and overriding is disabled.
+
+Action:
+
+Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true
+
+2025-06-16 23:21:53 [restartedMain] INFO  c.contentshub.ContentHubApplication - Starting ContentHubApplication using Java 17.0.3 with PID 30828 (D:\Documentos\Juguete\content-hub\build\classes\java\main started by walte in D:\Documentos\Juguete\content-hub)
+2025-06-16 23:21:53 [restartedMain] DEBUG c.contentshub.ContentHubApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-16 23:21:53 [restartedMain] INFO  c.contentshub.ContentHubApplication - The following 1 profile is active: "dev"
+2025-06-16 23:21:53 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-16 23:21:53 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2025-06-16 23:21:53 [restartedMain] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Scanning for R2DBC repositories in packages com.contentshub.infrastructure.persistence.r2dbc.
+2025-06-16 23:21:53 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 R2DBC repository interfaces.
+2025-06-16 23:21:53 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-16 23:21:53 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2025-06-16 23:21:53 [restartedMain] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Scanning for Reactive MongoDB repositories in packages com.contentshub.infrastructure.persistence.mongodb.
+2025-06-16 23:21:53 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 0 ms. Found 0 Reactive MongoDB repository interfaces.
+2025-06-16 23:21:53 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-16 23:21:53 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-16 23:21:53 [restartedMain] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Scanning for Redis repositories in packages com.contentshub.infrastructure.persistence.redis.
+2025-06-16 23:21:53 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 0 ms. Found 0 Redis repository interfaces.
+2025-06-16 23:21:54 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-16 23:21:54 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2025-06-16 23:21:54 [restartedMain] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Scanning for R2DBC repositories in packages com.contentshub.
+2025-06-16 23:21:54 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 0 R2DBC repository interfaces.
+2025-06-16 23:21:54 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-16 23:21:54 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-16 23:21:54 [restartedMain] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Scanning for Redis repositories in packages com.contentshub.
+2025-06-16 23:21:54 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 0 Redis repository interfaces.
+2025-06-16 23:21:55 [restartedMain] DEBUG io.r2dbc.postgresql.Extensions - Discovering Extensions using ServiceLoader
+2025-06-16 23:21:55 [restartedMain] DEBUG io.r2dbc.postgresql.Extensions - Registering extension io.r2dbc.postgresql.codec.BuiltinDynamicCodecs
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class io.r2dbc.postgresql.codec.Point to class org.springframework.data.geo.Point as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.geo.Point to class io.r2dbc.postgresql.codec.Point as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class io.r2dbc.postgresql.codec.Circle to class org.springframework.data.geo.Circle as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.geo.Circle to class io.r2dbc.postgresql.codec.Circle as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class io.r2dbc.postgresql.codec.Box to class org.springframework.data.geo.Box as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.geo.Box to class io.r2dbc.postgresql.codec.Box as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class io.r2dbc.postgresql.codec.Polygon to class org.springframework.data.geo.Polygon as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.geo.Polygon to class io.r2dbc.postgresql.codec.Polygon as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class io.r2dbc.postgresql.codec.Json to class [B as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class io.r2dbc.postgresql.codec.Json to class java.lang.String as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from interface io.r2dbc.spi.Row to class java.lang.Boolean as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from interface io.r2dbc.spi.Row to class java.lang.Number as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from interface io.r2dbc.spi.Row to class java.time.LocalDate as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from interface io.r2dbc.spi.Row to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from interface io.r2dbc.spi.Row to class java.time.LocalTime as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from interface io.r2dbc.spi.Row to class java.time.OffsetDateTime as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from interface io.r2dbc.spi.Row to class java.lang.String as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from interface io.r2dbc.spi.Row to class java.util.UUID as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from interface io.r2dbc.spi.Row to class java.time.ZonedDateTime as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.util.Date as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDate as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class java.util.Date as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalTime as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class java.util.Date as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.Instant as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.util.Date as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.time.Instant as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class java.lang.String as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.ZoneId as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class java.lang.String as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Duration as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class java.lang.String as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Period as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDate as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Instant as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding user defined converter from class java.math.BigDecimal to class java.lang.String as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding user defined converter from class java.lang.String to class java.math.BigDecimal as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding user defined converter from class java.math.BigInteger to class java.lang.String as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding user defined converter from class java.lang.String to class java.math.BigInteger as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Locale to class java.lang.String as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Character to class java.lang.String as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.math.BigDecimal to class org.bson.types.Decimal128 as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.types.Decimal128 to class java.math.BigDecimal as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.math.BigInteger to class org.bson.types.Decimal128 as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.net.URL to class java.lang.String as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.net.URL as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class java.lang.String as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.mongodb.core.query.Term to class java.lang.String as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.mongodb.core.script.NamedMongoScript to class org.bson.Document as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.script.NamedMongoScript as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Currency to class java.lang.String as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.util.Currency as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.concurrent.atomic.AtomicInteger to class java.lang.Integer as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.concurrent.atomic.AtomicLong to class java.lang.Long as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Long to class java.util.concurrent.atomic.AtomicLong as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Integer to class java.util.concurrent.atomic.AtomicInteger as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.types.Binary to class [B as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.BsonTimestamp to class java.time.Instant as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Number to class java.lang.Number as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from interface org.springframework.data.domain.Vector to class java.lang.Object as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from interface java.util.List to interface org.springframework.data.domain.Vector as reading converter
+2025-06-16 23:21:55 [restartedMain] WARN  o.s.data.convert.CustomConversions - Registering converter from interface java.util.List to interface org.springframework.data.domain.Vector as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.BinaryVector to interface org.springframework.data.domain.Vector as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.BsonUndefined to class java.lang.Object as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.net.URI to class java.lang.String as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.net.URI as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.geo.Box to class org.bson.Document as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.geo.Polygon to class org.bson.Document as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.geo.Circle to class org.bson.Document as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.mongodb.core.geo.Sphere to class org.bson.Document as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.geo.Box as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.geo.Polygon as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.geo.Circle as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.Sphere as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.geo.Point as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.geo.Point to class org.bson.Document as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.mongodb.core.query.GeoCommand to class org.bson.Document as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from interface org.springframework.data.mongodb.core.geo.GeoJson to class org.bson.Document as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.mongodb.core.geo.GeoJsonPoint to class org.bson.Document as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.mongodb.core.geo.GeoJsonPolygon to class org.bson.Document as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.GeoJsonPoint as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.GeoJsonPolygon as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.GeoJsonLineString as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.GeoJsonMultiLineString as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.GeoJsonMultiPoint as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.GeoJsonMultiPolygon as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.GeoJsonGeometryCollection as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to interface org.springframework.data.mongodb.core.geo.GeoJson as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.util.Date as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDate as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class java.util.Date as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalTime as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class java.util.Date as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.Instant as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.util.Date as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Skipping converter from class java.time.LocalDateTime to class java.time.Instant as reading converter class java.time.LocalDateTime is not a store supported simple type
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Skipping converter from class java.time.Instant to class java.time.LocalDateTime as reading converter class java.time.Instant is not a store supported simple type
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class java.lang.String as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.ZoneId as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class java.lang.String as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Duration as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class java.lang.String as writing converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Period as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDate as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:55 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Instant as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding user defined converter from class java.math.BigDecimal to class java.lang.String as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding user defined converter from class java.lang.String to class java.math.BigDecimal as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding user defined converter from class java.math.BigInteger to class java.lang.String as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding user defined converter from class java.lang.String to class java.math.BigInteger as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Locale to class java.lang.String as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Character to class java.lang.String as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.math.BigDecimal to class org.bson.types.Decimal128 as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.types.Decimal128 to class java.math.BigDecimal as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.math.BigInteger to class org.bson.types.Decimal128 as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.net.URL to class java.lang.String as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.net.URL as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class java.lang.String as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.mongodb.core.query.Term to class java.lang.String as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.mongodb.core.script.NamedMongoScript to class org.bson.Document as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.script.NamedMongoScript as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Currency to class java.lang.String as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.util.Currency as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.concurrent.atomic.AtomicInteger to class java.lang.Integer as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.concurrent.atomic.AtomicLong to class java.lang.Long as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Long to class java.util.concurrent.atomic.AtomicLong as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Integer to class java.util.concurrent.atomic.AtomicInteger as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.types.Binary to class [B as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.BsonTimestamp to class java.time.Instant as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Number to class java.lang.Number as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from interface org.springframework.data.domain.Vector to class java.lang.Object as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from interface java.util.List to interface org.springframework.data.domain.Vector as reading converter
+2025-06-16 23:21:56 [restartedMain] WARN  o.s.data.convert.CustomConversions - Registering converter from interface java.util.List to interface org.springframework.data.domain.Vector as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.BinaryVector to interface org.springframework.data.domain.Vector as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.BsonUndefined to class java.lang.Object as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.net.URI to class java.lang.String as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.net.URI as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.geo.Box to class org.bson.Document as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.geo.Polygon to class org.bson.Document as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.geo.Circle to class org.bson.Document as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.mongodb.core.geo.Sphere to class org.bson.Document as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.geo.Box as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.geo.Polygon as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.geo.Circle as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.Sphere as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.geo.Point as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.geo.Point to class org.bson.Document as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.mongodb.core.query.GeoCommand to class org.bson.Document as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from interface org.springframework.data.mongodb.core.geo.GeoJson to class org.bson.Document as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.mongodb.core.geo.GeoJsonPoint to class org.bson.Document as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.springframework.data.mongodb.core.geo.GeoJsonPolygon to class org.bson.Document as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.GeoJsonPoint as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.GeoJsonPolygon as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.GeoJsonLineString as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.GeoJsonMultiLineString as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.GeoJsonMultiPoint as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.GeoJsonMultiPolygon as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to class org.springframework.data.mongodb.core.geo.GeoJsonGeometryCollection as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class org.bson.Document to interface org.springframework.data.mongodb.core.geo.GeoJson as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.util.Date as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDate as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class java.util.Date as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalTime as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class java.util.Date as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.Instant as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.util.Date as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Skipping converter from class java.time.LocalDateTime to class java.time.Instant as reading converter class java.time.LocalDateTime is not a store supported simple type
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Skipping converter from class java.time.Instant to class java.time.LocalDateTime as reading converter class java.time.Instant is not a store supported simple type
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class java.lang.String as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.ZoneId as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class java.lang.String as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Duration as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class java.lang.String as writing converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Period as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDate as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Instant as reading converter
+2025-06-16 23:21:56 [restartedMain] DEBUG i.l.c.r.AddressResolverGroupProvider - Starting with netty's non-blocking DNS resolver library
+2025-06-16 23:21:56 [restartedMain] DEBUG i.l.core.resource.KqueueProvider - Starting without optional kqueue library
+2025-06-16 23:21:56 [restartedMain] DEBUG i.l.core.resource.IOUringProvider - Starting without optional io_uring library
+2025-06-16 23:21:56 [restartedMain] DEBUG i.l.core.resource.EpollProvider - Starting without optional epoll library
+2025-06-16 23:21:56 [restartedMain] DEBUG i.l.c.r.DefaultClientResources - -Dio.netty.eventLoopThreads: 8
+2025-06-16 23:21:56 [restartedMain] DEBUG i.l.c.r.DefaultEventLoopGroupProvider - Creating executor io.netty.util.concurrent.DefaultEventExecutorGroup
+2025-06-16 23:21:56 [restartedMain] DEBUG i.l.c.event.jfr.EventRecorderHolder - Starting with JFR support
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.String as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Number to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Number as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Enum to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Enum as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Boolean to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Boolean as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.Date as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.UUID to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.UUID as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZonedDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZonedDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.String as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Number to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Number as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Enum to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Enum as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Boolean to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Boolean as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.Date as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.UUID to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.UUID as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZonedDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZonedDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.String as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Number to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Number as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Enum to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Enum as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Boolean to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Boolean as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.Date as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.UUID to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.UUID as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZonedDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZonedDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.String as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Number to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Number as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Enum to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Enum as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Boolean to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Boolean as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.Date as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.UUID to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.UUID as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZonedDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZonedDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.String as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Number to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Number as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Enum to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Enum as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Boolean to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Boolean as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.Date as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.UUID to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.UUID as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZonedDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZonedDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.String as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Number to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Number as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Enum to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Enum as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Boolean to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Boolean as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.Date as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.UUID to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.UUID as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZonedDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZonedDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.String as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Number to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Number as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Enum to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Enum as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Boolean to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Boolean as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.Date as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.UUID to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.UUID as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZonedDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZonedDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.String as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Number to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Number as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Enum to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Enum as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.Boolean to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.lang.Boolean as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.Date as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.UUID to class [B as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.util.UUID as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZonedDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZonedDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetDateTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.OffsetTime to class [B as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class [B to class java.time.OffsetTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDate to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.LocalTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalTime to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.util.Date to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.util.Date as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.LocalDateTime to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Instant to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.ZoneId to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.ZoneId as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Duration to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Duration as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.time.Period to class java.lang.String as writing converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Period as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDate as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.LocalDateTime as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.data.convert.CustomConversions - Adding converter from class java.lang.String to class java.time.Instant as reading converter
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.d.r.l.RedisMessageListenerContainer - Starting RedisMessageListenerContainer...
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.d.r.l.RedisMessageListenerContainer - Postpone listening for Redis messages until actual listeners are added
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.w.r.r.m.a.RequestMappingHandlerMapping - 4 mappings in 'requestMappingHandlerMapping'
+2025-06-16 23:21:57 [restartedMain] DEBUG o.s.w.r.h.SimpleUrlHandlerMapping - Patterns [/webjars/**] in 'resourceHandlerMapping'
+2025-06-16 23:21:57 [restartedMain] INFO  c.contentshub.ContentHubApplication - Started ContentHubApplication in 4.648 seconds (process running for 5.737)
+2025-06-16 23:21:57 [restartedMain] INFO  c.contentshub.ContentHubApplication - 
+----------------------------------------------------------
+	🚀 'realtime-content-hub' está corriendo! 
+	🕐 Hora de inicio: 2025-06-16 23:21:57
+	📍 URLs de acceso:
+		- Local: 		http://localhost:8080/
+		- Externa: 	http://192.168.0.4:8080/
+		- Swagger UI: 	http://localhost:8080/swagger-ui.html
+		- API Docs: 	http://localhost:8080/api-docs
+		- Actuator: 	http://localhost:8080/management/health
+	🔧 Perfil(es): 	dev
+	☕ Java Version: 	17.0.3
+----------------------------------------------------------
+2025-06-16 23:21:57 [restartedMain] INFO  c.contentshub.ContentHubApplication - === Configuraciones Importantes ===
+2025-06-16 23:21:57 [restartedMain] INFO  c.contentshub.ContentHubApplication - 📊 Base de datos PostgreSQL: r2dbc:postgresql://localhost:5432/test
+2025-06-16 23:21:57 [restartedMain] INFO  c.contentshub.ContentHubApplication - 📚 MongoDB: mongodb://test:test@localhost:27017/test
+2025-06-16 23:21:57 [restartedMain] INFO  c.contentshub.ContentHubApplication - 💾 Redis: localhost:6379
+2025-06-16 23:21:57 [restartedMain] INFO  c.contentshub.ContentHubApplication - 🔐 JWT Expiration: 3600000 ms
+2025-06-16 23:21:57 [restartedMain] INFO  c.contentshub.ContentHubApplication - 🌐 CORS Origins: *
+2025-06-16 23:21:57 [restartedMain] INFO  c.contentshub.ContentHubApplication - 📁 Content Storage Path: ./uploads
+2025-06-16 23:21:57 [restartedMain] INFO  c.contentshub.ContentHubApplication - ===================================
+2025-06-16 23:21:57 [RMI TCP Connection(3)-192.168.0.4] DEBUG o.s.w.r.r.m.a.ControllerMethodResolver - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 @ExceptionHandler
+2025-06-16 23:21:57 [nioEventLoopGroup-3-3] WARN  o.s.b.a.d.m.MongoReactiveHealthIndicator - Mongo health check failed
+org.springframework.data.mongodb.UncategorizedMongoDbException: Exception authenticating MongoCredential{mechanism=SCRAM-SHA-1, userName='test', source='test', password=<hidden>, mechanismProperties=<hidden>}
+	at org.springframework.data.mongodb.core.MongoExceptionTranslator.doTranslateException(MongoExceptionTranslator.java:151)
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Assembly trace from producer [reactor.core.publisher.MonoError] :
+
+Error has been observed at the following site(s):
+	*__Flux.onErrorMap ⇢ at org.springframework.data.mongodb.core.ReactiveMongoTemplate.createFlux(ReactiveMongoTemplate.java:603)
+	|_       Flux.next ⇢ at org.springframework.data.mongodb.core.ReactiveMongoTemplate.executeCommand(ReactiveMongoTemplate.java:519)
+	|_        Mono.map ⇢ at org.springframework.boot.actuate.data.mongo.MongoReactiveHealthIndicator.doHealthCheck(MongoReactiveHealthIndicator.java:47)
+Original Stack Trace:
+		at org.springframework.data.mongodb.core.MongoExceptionTranslator.doTranslateException(MongoExceptionTranslator.java:151)
+		at org.springframework.data.mongodb.core.MongoExceptionTranslator.translateExceptionIfPossible(MongoExceptionTranslator.java:74)
+		at org.springframework.data.mongodb.core.ReactiveMongoTemplate.potentiallyConvertRuntimeException(ReactiveMongoTemplate.java:2768)
+		at org.springframework.data.mongodb.core.ReactiveMongoTemplate.lambda$translateException$100(ReactiveMongoTemplate.java:2751)
+		at reactor.core.publisher.Flux.lambda$onErrorMap$28(Flux.java:7318)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:94)
+		at reactor.core.publisher.MonoFlatMapMany$FlatMapManyInner.onError(MonoFlatMapMany.java:256)
+		at reactor.core.publisher.MonoNext$NextSubscriber.onError(MonoNext.java:93)
+		at reactor.core.publisher.MonoNext$NextSubscriber.onError(MonoNext.java:93)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.secondError(MonoFlatMap.java:241)
+		at reactor.core.publisher.MonoFlatMap$FlatMapInner.onError(MonoFlatMap.java:315)
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onError(MonoPeekTerminal.java:258)
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:205)
+		at com.mongodb.reactivestreams.client.internal.MongoOperationPublisher.lambda$sinkToCallback$38(MongoOperationPublisher.java:601)
+		at com.mongodb.reactivestreams.client.internal.OperationExecutorImpl.lambda$execute$1(OperationExecutorImpl.java:97)
+		at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+		at com.mongodb.internal.async.function.AsyncCallbackSupplier.lambda$whenComplete$1(AsyncCallbackSupplier.java:93)
+		at com.mongodb.internal.async.function.RetryingAsyncCallbackSupplier$RetryingCallback.onResult(RetryingAsyncCallbackSupplier.java:121)
+		at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+		at com.mongodb.internal.async.function.AsyncCallbackSupplier.lambda$whenComplete$1(AsyncCallbackSupplier.java:93)
+		at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+		at com.mongodb.internal.operation.AsyncOperationHelper.lambda$withAsyncSuppliedResource$3(AsyncOperationHelper.java:134)
+		at com.mongodb.internal.connection.DefaultServer.lambda$getConnectionAsync$0(DefaultServer.java:125)
+		at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+		at com.mongodb.internal.connection.DefaultConnectionPool.lambda$getAsync$0(DefaultConnectionPool.java:219)
+		at com.mongodb.internal.connection.DefaultConnectionPool$OpenConcurrencyLimiter.lambda$openWithConcurrencyLimitAsync$0(DefaultConnectionPool.java:1023)
+		at com.mongodb.internal.connection.DefaultConnectionPool$PooledConnection.lambda$openAsync$0(DefaultConnectionPool.java:646)
+		at com.mongodb.internal.connection.UsageTrackingInternalConnection.lambda$openAsync$0(UsageTrackingInternalConnection.java:65)
+		at com.mongodb.internal.connection.InternalStreamConnection$1.lambda$completed$0(InternalStreamConnection.java:274)
+		at com.mongodb.internal.connection.InternalStreamConnectionInitializer.lambda$finishHandshakeAsync$1(InternalStreamConnectionInitializer.java:129)
+		at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+		at com.mongodb.internal.connection.SaslAuthenticator.lambda$getNextSaslResponseAsync$2(SaslAuthenticator.java:156)
+		at com.mongodb.internal.connection.SaslAuthenticator.lambda$sendSaslStartAsync$5(SaslAuthenticator.java:261)
+		at com.mongodb.internal.connection.CommandHelper.lambda$executeCommandAsync$0(CommandHelper.java:73)
+		at com.mongodb.internal.async.AsyncSupplier.lambda$finish$0(AsyncSupplier.java:73)
+		at com.mongodb.internal.async.SingleResultCallback.completeExceptionally(SingleResultCallback.java:71)
+		at com.mongodb.internal.async.AsyncSupplier.lambda$onErrorIf$7(AsyncSupplier.java:187)
+		at com.mongodb.internal.async.AsyncSupplier.lambda$finish$0(AsyncSupplier.java:73)
+		at com.mongodb.internal.async.AsyncSupplier.lambda$finish$0(AsyncSupplier.java:73)
+		at com.mongodb.internal.async.AsyncSupplier.lambda$finish$0(AsyncSupplier.java:73)
+		at com.mongodb.internal.connection.InternalStreamConnection.lambda$sendCommandMessageAsync$9(InternalStreamConnection.java:632)
+		at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback$MessageCallback.onResult(InternalStreamConnection.java:941)
+		at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback$MessageCallback.onResult(InternalStreamConnection.java:904)
+		at com.mongodb.internal.connection.InternalStreamConnection$2.completed(InternalStreamConnection.java:738)
+		at com.mongodb.internal.connection.InternalStreamConnection$2.completed(InternalStreamConnection.java:735)
+		at com.mongodb.internal.connection.netty.NettyStream.readAsync(NettyStream.java:334)
+		at com.mongodb.internal.connection.netty.NettyStream.readAsync(NettyStream.java:278)
+		at com.mongodb.internal.connection.InternalStreamConnection.readAsync(InternalStreamConnection.java:735)
+		at com.mongodb.internal.connection.InternalStreamConnection.access$500(InternalStreamConnection.java:103)
+		at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback.onResult(InternalStreamConnection.java:893)
+		at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback.onResult(InternalStreamConnection.java:875)
+		at com.mongodb.internal.connection.InternalStreamConnection$2.completed(InternalStreamConnection.java:738)
+		at com.mongodb.internal.connection.InternalStreamConnection$2.completed(InternalStreamConnection.java:735)
+		at com.mongodb.internal.connection.netty.NettyStream.readAsync(NettyStream.java:334)
+		at com.mongodb.internal.connection.netty.NettyStream.handleReadResponse(NettyStream.java:361)
+		at com.mongodb.internal.connection.netty.NettyStream.access$900(NettyStream.java:115)
+		at com.mongodb.internal.connection.netty.NettyStream$InboundBufferHandler.channelRead0(NettyStream.java:437)
+		at com.mongodb.internal.connection.netty.NettyStream$InboundBufferHandler.channelRead0(NettyStream.java:434)
+		at io.netty.channel.SimpleChannelInboundHandler.channelRead(SimpleChannelInboundHandler.java:99)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1357)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:868)
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:796)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:732)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:658)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: com.mongodb.MongoSecurityException: Exception authenticating MongoCredential{mechanism=SCRAM-SHA-1, userName='test', source='test', password=<hidden>, mechanismProperties=<hidden>}
+	at com.mongodb.internal.connection.SaslAuthenticator.wrapException(SaslAuthenticator.java:300)
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Assembly trace from producer [reactor.core.publisher.MonoCreate] :
+	reactor.core.publisher.Mono.create(Mono.java:203)
+	com.mongodb.reactivestreams.client.internal.OperationExecutorImpl.lambda$execute$4(OperationExecutorImpl.java:93)
+Error has been observed at the following site(s):
+	*_______Mono.create ⇢ at com.mongodb.reactivestreams.client.internal.OperationExecutorImpl.lambda$execute$4(OperationExecutorImpl.java:93)
+	|_   Mono.doOnError ⇢ at com.mongodb.reactivestreams.client.internal.OperationExecutorImpl.lambda$execute$4(OperationExecutorImpl.java:99)
+	*______Mono.flatMap ⇢ at com.mongodb.reactivestreams.client.internal.OperationExecutorImpl.lambda$execute$5(OperationExecutorImpl.java:88)
+	*_________Mono.from ⇢ at com.mongodb.reactivestreams.client.internal.OperationExecutorImpl.execute(OperationExecutorImpl.java:84)
+	*__Mono.flatMapMany ⇢ at org.springframework.data.mongodb.core.ReactiveMongoTemplate.createFlux(ReactiveMongoTemplate.java:602)
+Original Stack Trace:
+		at com.mongodb.internal.connection.SaslAuthenticator.wrapException(SaslAuthenticator.java:300)
+		at com.mongodb.internal.connection.SaslAuthenticator.lambda$getNextSaslResponseAsync$2(SaslAuthenticator.java:156)
+		at com.mongodb.internal.connection.SaslAuthenticator.lambda$sendSaslStartAsync$5(SaslAuthenticator.java:261)
+		at com.mongodb.internal.connection.CommandHelper.lambda$executeCommandAsync$0(CommandHelper.java:73)
+		at com.mongodb.internal.async.AsyncSupplier.lambda$finish$0(AsyncSupplier.java:73)
+		at com.mongodb.internal.async.SingleResultCallback.completeExceptionally(SingleResultCallback.java:71)
+		at com.mongodb.internal.async.AsyncSupplier.lambda$onErrorIf$7(AsyncSupplier.java:187)
+		at com.mongodb.internal.async.AsyncSupplier.lambda$finish$0(AsyncSupplier.java:73)
+		at com.mongodb.internal.async.AsyncSupplier.lambda$finish$0(AsyncSupplier.java:73)
+		at com.mongodb.internal.async.AsyncSupplier.lambda$finish$0(AsyncSupplier.java:73)
+		at com.mongodb.internal.connection.InternalStreamConnection.lambda$sendCommandMessageAsync$9(InternalStreamConnection.java:632)
+		at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback$MessageCallback.onResult(InternalStreamConnection.java:941)
+		at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback$MessageCallback.onResult(InternalStreamConnection.java:904)
+		at com.mongodb.internal.connection.InternalStreamConnection$2.completed(InternalStreamConnection.java:738)
+		at com.mongodb.internal.connection.InternalStreamConnection$2.completed(InternalStreamConnection.java:735)
+		at com.mongodb.internal.connection.netty.NettyStream.readAsync(NettyStream.java:334)
+		at com.mongodb.internal.connection.netty.NettyStream.readAsync(NettyStream.java:278)
+		at com.mongodb.internal.connection.InternalStreamConnection.readAsync(InternalStreamConnection.java:735)
+		at com.mongodb.internal.connection.InternalStreamConnection.access$500(InternalStreamConnection.java:103)
+		at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback.onResult(InternalStreamConnection.java:893)
+		at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback.onResult(InternalStreamConnection.java:875)
+		at com.mongodb.internal.connection.InternalStreamConnection$2.completed(InternalStreamConnection.java:738)
+		at com.mongodb.internal.connection.InternalStreamConnection$2.completed(InternalStreamConnection.java:735)
+		at com.mongodb.internal.connection.netty.NettyStream.readAsync(NettyStream.java:334)
+		at com.mongodb.internal.connection.netty.NettyStream.handleReadResponse(NettyStream.java:361)
+		at com.mongodb.internal.connection.netty.NettyStream.access$900(NettyStream.java:115)
+		at com.mongodb.internal.connection.netty.NettyStream$InboundBufferHandler.channelRead0(NettyStream.java:437)
+		at com.mongodb.internal.connection.netty.NettyStream$InboundBufferHandler.channelRead0(NettyStream.java:434)
+		at io.netty.channel.SimpleChannelInboundHandler.channelRead(SimpleChannelInboundHandler.java:99)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1357)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:868)
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:796)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:732)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:658)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: com.mongodb.MongoCommandException: Command failed with error 18 (AuthenticationFailed): 'Authentication failed.' on server localhost:27017. The full response is {"ok": 0.0, "errmsg": "Authentication failed.", "code": 18, "codeName": "AuthenticationFailed"}
+	at com.mongodb.internal.connection.ProtocolHelper.getCommandFailureException(ProtocolHelper.java:210)
+	at com.mongodb.internal.connection.InternalStreamConnection.lambda$sendCommandMessageAsync$9(InternalStreamConnection.java:622)
+	at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback$MessageCallback.onResult(InternalStreamConnection.java:941)
+	at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback$MessageCallback.onResult(InternalStreamConnection.java:904)
+	at com.mongodb.internal.connection.InternalStreamConnection$2.completed(InternalStreamConnection.java:738)
+	at com.mongodb.internal.connection.InternalStreamConnection$2.completed(InternalStreamConnection.java:735)
+	at com.mongodb.internal.connection.netty.NettyStream.readAsync(NettyStream.java:334)
+	at com.mongodb.internal.connection.netty.NettyStream.readAsync(NettyStream.java:278)
+	at com.mongodb.internal.connection.InternalStreamConnection.readAsync(InternalStreamConnection.java:735)
+	at com.mongodb.internal.connection.InternalStreamConnection.access$500(InternalStreamConnection.java:103)
+	at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback.onResult(InternalStreamConnection.java:893)
+	at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback.onResult(InternalStreamConnection.java:875)
+	at com.mongodb.internal.connection.InternalStreamConnection$2.completed(InternalStreamConnection.java:738)
+	at com.mongodb.internal.connection.InternalStreamConnection$2.completed(InternalStreamConnection.java:735)
+	at com.mongodb.internal.connection.netty.NettyStream.readAsync(NettyStream.java:334)
+	at com.mongodb.internal.connection.netty.NettyStream.handleReadResponse(NettyStream.java:361)
+	at com.mongodb.internal.connection.netty.NettyStream.access$900(NettyStream.java:115)
+	at com.mongodb.internal.connection.netty.NettyStream$InboundBufferHandler.channelRead0(NettyStream.java:437)
+	at com.mongodb.internal.connection.netty.NettyStream$InboundBufferHandler.channelRead0(NettyStream.java:434)
+	at io.netty.channel.SimpleChannelInboundHandler.channelRead(SimpleChannelInboundHandler.java:99)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1357)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:868)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:796)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:732)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2025-06-16 23:21:57 [boundedElastic-1] DEBUG io.lettuce.core.RedisClient - Trying to get a Redis connection for: redis://****@localhost?timeout=2s
+2025-06-16 23:21:57 [boundedElastic-1] DEBUG i.l.c.r.DefaultEventLoopGroupProvider - Allocating executor io.netty.channel.nio.NioEventLoopGroup
+2025-06-16 23:21:57 [boundedElastic-1] DEBUG i.l.c.r.DefaultEventLoopGroupProvider - Creating executor io.netty.channel.nio.NioEventLoopGroup
+2025-06-16 23:21:57 [boundedElastic-1] DEBUG i.l.c.r.DefaultEventLoopGroupProvider - Adding reference to io.netty.channel.nio.NioEventLoopGroup@2cee22c0, existing ref count 0
+2025-06-16 23:21:58 [boundedElastic-1] DEBUG io.lettuce.core.RedisClient - Resolved SocketAddress localhost/<unresolved>:6379 using redis://****@localhost?timeout=2s
+2025-06-16 23:21:58 [boundedElastic-1] DEBUG io.lettuce.core.AbstractRedisClient - Connecting to Redis at localhost/<unresolved>:6379
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG i.l.core.protocol.CommandHandler - [channel=0x32ef812d, [id: 0x0dcc2de2] (inactive), epid=0x1, chid=0x1] channelRegistered()
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG i.l.core.protocol.CommandHandler - [channel=0x32ef812d, /127.0.0.1:53319 -> localhost/127.0.0.1:6379, epid=0x1, chid=0x1] write(ctx, AsyncCommand [type=HELLO, output=GenericMapOutput [output=null, error='null'], commandType=io.lettuce.core.protocol.Command], promise)
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG i.l.core.protocol.CommandEncoder - [channel=0x32ef812d, /127.0.0.1:53319 -> localhost/127.0.0.1:6379] writing command AsyncCommand [type=HELLO, output=GenericMapOutput [output=null, error='null'], commandType=io.lettuce.core.protocol.Command]
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG i.l.core.protocol.CommandHandler - [channel=0x32ef812d, /127.0.0.1:53319 -> localhost/127.0.0.1:6379, epid=0x1, chid=0x1] Received: 64 bytes, 1 commands in the stack
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG i.l.core.protocol.CommandHandler - [channel=0x32ef812d, /127.0.0.1:53319 -> localhost/127.0.0.1:6379, epid=0x1, chid=0x1] Stack contains: 1 commands
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG i.l.core.protocol.RedisStateMachine - Decode done, empty stack: true
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG i.l.core.protocol.CommandHandler - [channel=0x32ef812d, /127.0.0.1:53319 -> localhost/127.0.0.1:6379, epid=0x1, chid=0x1] Completing command LatencyMeteredCommand [type=HELLO, output=GenericMapOutput [output=null, error='WRONGPASS invalid username-password pair or user is disabled.'], commandType=io.lettuce.core.protocol.AsyncCommand]
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG io.lettuce.core.AbstractRedisClient - Connecting to Redis at localhost/<unresolved>:6379, initialization: {}
+java.util.concurrent.CompletionException: io.lettuce.core.RedisCommandExecutionException: WRONGPASS invalid username-password pair or user is disabled.
+	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:332)
+	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:347)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1141)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.completeExceptionally(CompletableFuture.java:2162)
+	at io.lettuce.core.RedisHandshake.lambda$tryHandshakeResp3$2(RedisHandshake.java:134)
+	at java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:863)
+	at java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:841)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.completeExceptionally(CompletableFuture.java:2162)
+	at io.lettuce.core.protocol.AsyncCommand.doCompleteExceptionally(AsyncCommand.java:143)
+	at io.lettuce.core.protocol.AsyncCommand.completeResult(AsyncCommand.java:124)
+	at io.lettuce.core.protocol.AsyncCommand.complete(AsyncCommand.java:115)
+	at io.lettuce.core.protocol.CommandWrapper.complete(CommandWrapper.java:67)
+	at io.lettuce.core.protocol.CommandHandler.complete(CommandHandler.java:762)
+	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:697)
+	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:614)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1357)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:868)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:796)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:732)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: io.lettuce.core.RedisCommandExecutionException: WRONGPASS invalid username-password pair or user is disabled.
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:151)
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:120)
+	... 22 common frames omitted
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG io.lettuce.core.RedisChannelHandler - closeAsync()
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG i.l.core.protocol.DefaultEndpoint - [unknown, epid=0x1] closeAsync()
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG i.l.core.protocol.CommandHandler - [channel=0x32ef812d, /127.0.0.1:53319 -> localhost/127.0.0.1:6379, epid=0x1, chid=0x1] channelInactive()
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG i.l.core.protocol.DefaultEndpoint - [unknown, epid=0x1] deactivating endpoint handler
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG i.l.core.protocol.CommandHandler - [channel=0x32ef812d, /127.0.0.1:53319 -> localhost/127.0.0.1:6379, epid=0x1, chid=0x1] channelInactive() done
+2025-06-16 23:21:58 [boundedElastic-1] WARN  o.s.b.a.d.r.RedisReactiveHealthIndicator - Redis health check failed
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1858)
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Assembly trace from producer [reactor.core.publisher.MonoSubscribeOnCallable] :
+	reactor.core.publisher.Mono.subscribeOn(Mono.java:4625)
+	org.springframework.boot.actuate.data.redis.RedisReactiveHealthIndicator.getConnection(RedisReactiveHealthIndicator.java:57)
+Error has been observed at the following site(s):
+	*__Mono.subscribeOn ⇢ at org.springframework.boot.actuate.data.redis.RedisReactiveHealthIndicator.getConnection(RedisReactiveHealthIndicator.java:57)
+	|_     Mono.flatMap ⇢ at org.springframework.boot.actuate.data.redis.RedisReactiveHealthIndicator.doHealthCheck(RedisReactiveHealthIndicator.java:52)
+Original Stack Trace:
+		at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1858)
+		at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1789)
+		at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1586)
+		at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.lambda$getConnection$0(LettuceConnectionFactory.java:1566)
+		at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.doInLock(LettuceConnectionFactory.java:1527)
+		at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1563)
+		at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedReactiveConnection(LettuceConnectionFactory.java:1274)
+		at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getReactiveConnection(LettuceConnectionFactory.java:1149)
+		at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getReactiveConnection(LettuceConnectionFactory.java:120)
+		at reactor.core.publisher.MonoSupplier.call(MonoSupplier.java:67)
+		at reactor.core.publisher.FluxSubscribeOnCallable$CallableSubscribeOnSubscription.run(FluxSubscribeOnCallable.java:228)
+		at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
+		at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+		at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
+		at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+		at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+		at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost/<unresolved>:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:63)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:41)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:354)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:220)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:112)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:112)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1787)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1586)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.lambda$getConnection$0(LettuceConnectionFactory.java:1566)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.doInLock(LettuceConnectionFactory.java:1527)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1563)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedReactiveConnection(LettuceConnectionFactory.java:1274)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getReactiveConnection(LettuceConnectionFactory.java:1149)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getReactiveConnection(LettuceConnectionFactory.java:120)
+	at reactor.core.publisher.MonoSupplier.call(MonoSupplier.java:67)
+	at reactor.core.publisher.MonoCallableOnAssembly.call(MonoCallableOnAssembly.java:91)
+	at reactor.core.publisher.FluxSubscribeOnCallable$CallableSubscribeOnSubscription.run(FluxSubscribeOnCallable.java:228)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: io.lettuce.core.RedisCommandExecutionException: WRONGPASS invalid username-password pair or user is disabled.
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:151)
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:120)
+	at io.lettuce.core.protocol.AsyncCommand.completeResult(AsyncCommand.java:124)
+	at io.lettuce.core.protocol.AsyncCommand.complete(AsyncCommand.java:115)
+	at io.lettuce.core.protocol.CommandWrapper.complete(CommandWrapper.java:67)
+	at io.lettuce.core.protocol.CommandHandler.complete(CommandHandler.java:762)
+	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:697)
+	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:614)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1357)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:868)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:796)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:732)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	... 1 common frames omitted
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG i.l.core.protocol.ConnectionWatchdog - [unknown, last known addr=null] channelInactive()
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG i.l.core.protocol.ConnectionWatchdog - [unknown, last known addr=null] ConnectionWatchdog not armed
+2025-06-16 23:21:58 [lettuce-nioEventLoop-6-1] DEBUG i.l.core.protocol.CommandHandler - [channel=0x32ef812d, /127.0.0.1:53319 -> localhost/127.0.0.1:6379, epid=0x1, chid=0x1] channelUnregistered()
+2025-06-16 23:21:58 [reactor-tcp-nio-1] DEBUG i.r.p.client.ReactorNettyClient - [cid: 0x1] Request:  StartupMessage{, database='test', username='test'}
+2025-06-16 23:21:58 [reactor-tcp-nio-1] DEBUG i.r.p.client.ReactorNettyClient - [cid: 0x1] Response: AuthenticationSASL{authenticationMechanisms=[SCRAM-SHA-256]}
+2025-06-16 23:21:58 [reactor-tcp-nio-1] DEBUG i.r.p.client.ReactorNettyClient - [cid: 0x1] Request:  SASLInitialResponse{initialResponse=java.nio.HeapByteBuffer[pos=0 lim=36 cap=39], name='SCRAM-SHA-256'}
+2025-06-16 23:21:58 [reactor-tcp-nio-1] DEBUG i.r.p.client.ReactorNettyClient - [cid: 0x1] Response: AuthenticationSASLContinue{data=java.nio.HeapByteBuffer[pos=0 lim=84 cap=84]}
+2025-06-16 23:21:58 [reactor-tcp-nio-1] DEBUG i.r.p.client.ReactorNettyClient - [cid: 0x1] Request:  SASLResponse{data=java.nio.HeapByteBuffer[pos=0 lim=104 cap=114]}
+2025-06-16 23:21:58 [reactor-tcp-nio-1] DEBUG i.r.p.client.ReactorNettyClient - [cid: 0x1] Response: ErrorResponse{fields=[Field{type=SEVERITY_LOCALIZED, value='FATAL'}, Field{type=SEVERITY_NON_LOCALIZED, value='FATAL'}, Field{type=CODE, value='28P01'}, Field{type=MESSAGE, value='password authentication failed for user "test"'}, Field{type=FILE, value='auth.c'}, Field{type=LINE, value='326'}, Field{type=ROUTINE, value='auth_failed'}]}
+2025-06-16 23:21:58 [reactor-tcp-nio-1] DEBUG i.r.p.client.ReactorNettyClient - Error: SEVERITY_LOCALIZED=FATAL, SEVERITY_NON_LOCALIZED=FATAL, CODE=28P01, MESSAGE=password authentication failed for user "test", FILE=auth.c, LINE=326, ROUTINE=auth_failed
+2025-06-16 23:21:58 [reactor-tcp-nio-2] DEBUG i.r.p.client.ReactorNettyClient - [cid: 0x2] Request:  StartupMessage{, database='test', username='test'}
+2025-06-16 23:21:58 [reactor-tcp-nio-2] DEBUG i.r.p.client.ReactorNettyClient - [cid: 0x2] Response: AuthenticationSASL{authenticationMechanisms=[SCRAM-SHA-256]}
+2025-06-16 23:21:58 [reactor-tcp-nio-2] DEBUG i.r.p.client.ReactorNettyClient - [cid: 0x2] Request:  SASLInitialResponse{initialResponse=java.nio.HeapByteBuffer[pos=0 lim=36 cap=39], name='SCRAM-SHA-256'}
+2025-06-16 23:21:58 [reactor-tcp-nio-2] DEBUG i.r.p.client.ReactorNettyClient - [cid: 0x2] Response: AuthenticationSASLContinue{data=java.nio.HeapByteBuffer[pos=0 lim=84 cap=84]}
+2025-06-16 23:21:58 [reactor-tcp-nio-2] DEBUG i.r.p.client.ReactorNettyClient - [cid: 0x2] Request:  SASLResponse{data=java.nio.HeapByteBuffer[pos=0 lim=104 cap=114]}
+2025-06-16 23:21:58 [reactor-tcp-nio-2] DEBUG i.r.p.client.ReactorNettyClient - [cid: 0x2] Response: ErrorResponse{fields=[Field{type=SEVERITY_LOCALIZED, value='FATAL'}, Field{type=SEVERITY_NON_LOCALIZED, value='FATAL'}, Field{type=CODE, value='28P01'}, Field{type=MESSAGE, value='password authentication failed for user "test"'}, Field{type=FILE, value='auth.c'}, Field{type=LINE, value='326'}, Field{type=ROUTINE, value='auth_failed'}]}
+2025-06-16 23:21:58 [reactor-tcp-nio-2] DEBUG i.r.p.client.ReactorNettyClient - Error: SEVERITY_LOCALIZED=FATAL, SEVERITY_NON_LOCALIZED=FATAL, CODE=28P01, MESSAGE=password authentication failed for user "test", FILE=auth.c, LINE=326, ROUTINE=auth_failed
+2025-06-16 23:21:58 [reactor-tcp-nio-2] WARN  o.s.b.a.r.ConnectionFactoryHealthIndicator - Health check failed
+io.r2dbc.postgresql.ExceptionFactory$PostgresqlAuthenticationFailure: password authentication failed for user "test"
+	at io.r2dbc.postgresql.ExceptionFactory.createException(ExceptionFactory.java:86)
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Assembly trace from producer [reactor.core.publisher.FluxHandleFuseable] :
+	reactor.core.publisher.Flux.handle(Flux.java:6158)
+	io.r2dbc.postgresql.SingleHostConnectionFunction.lambda$connect$2(SingleHostConnectionFunction.java:51)
+Error has been observed at the following site(s):
+	*__________Flux.handle ⇢ at io.r2dbc.postgresql.SingleHostConnectionFunction.lambda$connect$2(SingleHostConnectionFunction.java:51)
+	*______Mono.delayUntil ⇢ at io.r2dbc.postgresql.SingleHostConnectionFunction.connect(SingleHostConnectionFunction.java:48)
+	|_        Mono.flatMap ⇢ at io.r2dbc.postgresql.PostgresqlConnectionFactory.doCreateConnection(PostgresqlConnectionFactory.java:132)
+	|_     Mono.onErrorMap ⇢ at io.r2dbc.postgresql.PostgresqlConnectionFactory.doCreateConnection(PostgresqlConnectionFactory.java:153)
+	|_           Mono.flux ⇢ at io.r2dbc.postgresql.PostgresqlConnectionFactory.doCreateConnection(PostgresqlConnectionFactory.java:154)
+	|_         Flux.single ⇢ at io.r2dbc.postgresql.PostgresqlConnectionFactory.doCreateConnection(PostgresqlConnectionFactory.java:156)
+	|_    Mono.doOnDiscard ⇢ at io.r2dbc.postgresql.PostgresqlConnectionFactory.doCreateConnection(PostgresqlConnectionFactory.java:157)
+	|_           Mono.cast ⇢ at io.r2dbc.postgresql.PostgresqlConnectionFactory.create(PostgresqlConnectionFactory.java:107)
+	|_    Mono.subscribeOn ⇢ at io.r2dbc.pool.ConnectionPool.createConnectionPool(ConnectionPool.java:257)
+	|_        Mono.timeout ⇢ at io.r2dbc.pool.ConnectionPool.createConnectionPool(ConnectionPool.java:268)
+	|_   Mono.contextWrite ⇢ at io.r2dbc.pool.ConnectionPool.createConnectionPool(ConnectionPool.java:268)
+	*_________Mono.flatMap ⇢ at io.r2dbc.pool.ConnectionPool.lambda$new$11(ConnectionPool.java:107)
+	|_        Mono.timeout ⇢ at io.r2dbc.pool.ConnectionPool.lambda$new$11(ConnectionPool.java:152)
+	|_   Mono.contextWrite ⇢ at io.r2dbc.pool.ConnectionPool.lambda$new$11(ConnectionPool.java:152)
+	|_     Mono.onErrorMap ⇢ at io.r2dbc.pool.ConnectionPool.lambda$new$11(ConnectionPool.java:163)
+	*___________Mono.defer ⇢ at io.r2dbc.pool.ConnectionPool.<init>(ConnectionPool.java:104)
+	|_          Mono.retry ⇢ at io.r2dbc.pool.ConnectionPool.<init>(ConnectionPool.java:167)
+	*_______Mono.usingWhen ⇢ at org.springframework.boot.actuate.r2dbc.ConnectionFactoryHealthIndicator.validateWithConnectionValidation(ConnectionFactoryHealthIndicator.java:95)
+	|_            Mono.map ⇢ at org.springframework.boot.actuate.r2dbc.ConnectionFactoryHealthIndicator.validateWithConnectionValidation(ConnectionFactoryHealthIndicator.java:98)
+	|_ Mono.defaultIfEmpty ⇢ at org.springframework.boot.actuate.r2dbc.ConnectionFactoryHealthIndicator.doHealthCheck(ConnectionFactoryHealthIndicator.java:73)
+Original Stack Trace:
+		at io.r2dbc.postgresql.ExceptionFactory.createException(ExceptionFactory.java:86)
+		at io.r2dbc.postgresql.ExceptionFactory.createException(ExceptionFactory.java:65)
+		at io.r2dbc.postgresql.ExceptionFactory.handleErrorResponse(ExceptionFactory.java:132)
+		at reactor.core.publisher.FluxHandleFuseable$HandleFuseableSubscriber.onNext(FluxHandleFuseable.java:179)
+		at reactor.core.publisher.MonoFlatMapMany$FlatMapManyInner.onNext(MonoFlatMapMany.java:251)
+		at reactor.core.publisher.FluxHandleFuseable$HandleFuseableSubscriber.onNext(FluxHandleFuseable.java:194)
+		at reactor.core.publisher.FluxCreate$BufferAsyncSink.drain(FluxCreate.java:880)
+		at reactor.core.publisher.FluxCreate$BufferAsyncSink.next(FluxCreate.java:805)
+		at reactor.core.publisher.FluxCreate$SerializedFluxSink.next(FluxCreate.java:163)
+		at io.r2dbc.postgresql.client.ReactorNettyClient$Conversation.emit(ReactorNettyClient.java:696)
+		at io.r2dbc.postgresql.client.ReactorNettyClient$BackendMessageSubscriber.emit(ReactorNettyClient.java:948)
+		at io.r2dbc.postgresql.client.ReactorNettyClient$BackendMessageSubscriber.onNext(ReactorNettyClient.java:822)
+		at io.r2dbc.postgresql.client.ReactorNettyClient$BackendMessageSubscriber.onNext(ReactorNettyClient.java:728)
+		at reactor.core.publisher.FluxHandleFuseable$HandleFuseableSubscriber.onNext(FluxHandleFuseable.java:194)
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableConditionalSubscriber.onNext(FluxPeekFuseable.java:503)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onNext(FluxMapFuseable.java:299)
+		at reactor.core.publisher.FluxMap$MapConditionalSubscriber.onNext(FluxMap.java:224)
+		at reactor.netty.channel.FluxReceive.drainReceiver(FluxReceive.java:292)
+		at reactor.netty.channel.FluxReceive.onInboundNext(FluxReceive.java:401)
+		at reactor.netty.channel.ChannelOperations.onInboundNext(ChannelOperations.java:435)
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:115)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346)
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1357)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:868)
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:796)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:732)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:658)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:833)
+2025-06-16 23:23:05 [reactor-http-nio-2] DEBUG o.s.w.s.a.HttpWebHandlerAdapter - enableLoggingRequestDetails='false': form data and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-06-16 23:27:07 [Thread-7] DEBUG o.s.d.r.l.RedisMessageListenerContainer - Stopped RedisMessageListenerContainer
+2025-06-16 23:27:07 [Thread-7] DEBUG io.lettuce.core.AbstractRedisClient - Initiate shutdown (0, 100, MILLISECONDS)
+2025-06-16 23:27:07 [Thread-7] DEBUG i.l.c.r.DefaultEventLoopGroupProvider - Release executor io.netty.channel.nio.NioEventLoopGroup@2cee22c0
+2025-06-16 23:27:07 [Thread-7] DEBUG i.l.c.r.DefaultClientResources - Initiate shutdown (0, 2, SECONDS)
+2025-06-16 23:27:07 [Thread-7] DEBUG i.l.c.r.DefaultEventLoopGroupProvider - Initiate shutdown (0, 2, SECONDS)
