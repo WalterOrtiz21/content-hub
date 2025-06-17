@@ -3,7 +3,6 @@ package com.contentshub.application.usecase;
 import com.contentshub.application.port.input.CollaborationUseCase;
 import com.contentshub.application.port.output.CacheRepositoryPort;
 import com.contentshub.application.port.output.DocumentRepositoryPort;
-import com.contentshub.application.port.output.EventPublisherPort;
 import com.contentshub.application.port.output.UserRepositoryPort;
 import com.contentshub.domain.valueobject.UserId;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Implementación de casos de uso para colaboración en tiempo real
+ * Versión sin EventPublisher para evitar dependencias circulares
  */
 @Service
 @RequiredArgsConstructor
@@ -28,6 +28,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CollaborationService implements CollaborationUseCase {
 
     private final DocumentRepositoryPort documentRepository;
+    private final UserRepositoryPort userRepository;
     private final CacheRepositoryPort cacheRepository;
 
     // Cache keys
@@ -239,7 +240,7 @@ public class CollaborationService implements CollaborationUseCase {
     }
 
     /**
-     * Métodos auxiliares privados
+     * Métodos auxiliares privados (implementaciones simplificadas)
      */
 
     private Mono<Void> validateDocumentAccess(String documentId, UserId userId) {
@@ -258,14 +259,23 @@ public class CollaborationService implements CollaborationUseCase {
     }
 
     private Mono<CollaborationSessionResponse> createSession(StartSessionCommand command) {
-        return Mono.fromCallable(() -> new CollaborationSessionResponse(
-                command.sessionId(),
-                command.documentId(),
-                command.userId(),
-                "", // userName - obtener del repositorio si es necesario
-                LocalDateTime.now(),
-                "ACTIVE"
-        ));
+        return userRepository.findById(command.userId())
+                .map(user -> new CollaborationSessionResponse(
+                        command.sessionId(),
+                        command.documentId(),
+                        command.userId(),
+                        user.getFullName(),
+                        LocalDateTime.now(),
+                        "ACTIVE"
+                ))
+                .switchIfEmpty(Mono.just(new CollaborationSessionResponse(
+                        command.sessionId(),
+                        command.documentId(),
+                        command.userId(),
+                        "Unknown User",
+                        LocalDateTime.now(),
+                        "ACTIVE"
+                )));
     }
 
     private Mono<CollaborationSessionResponse> storeSession(CollaborationSessionResponse session) {
@@ -405,37 +415,67 @@ public class CollaborationService implements CollaborationUseCase {
     }
 
     private Mono<CommentResponse> createComment(AddCommentCommand command) {
-        return Mono.fromCallable(() -> new CommentResponse(
-                UUID.randomUUID().toString(),
-                command.documentId(),
-                command.authorId(),
-                "", // authorName - obtener del repositorio
-                "", // authorAvatar
-                command.content(),
-                command.position(),
-                null, // parentCommentId
-                false,
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                java.util.List.of()
-        ));
+        return userRepository.findById(command.authorId())
+                .map(user -> new CommentResponse(
+                        UUID.randomUUID().toString(),
+                        command.documentId(),
+                        command.authorId(),
+                        user.getFullName(),
+                        user.getProfilePictureUrl(),
+                        command.content(),
+                        command.position(),
+                        null, // parentCommentId
+                        false,
+                        LocalDateTime.now(),
+                        LocalDateTime.now(),
+                        java.util.List.of()
+                ))
+                .switchIfEmpty(Mono.just(new CommentResponse(
+                        UUID.randomUUID().toString(),
+                        command.documentId(),
+                        command.authorId(),
+                        "Unknown User",
+                        "",
+                        command.content(),
+                        command.position(),
+                        null,
+                        false,
+                        LocalDateTime.now(),
+                        LocalDateTime.now(),
+                        java.util.List.of()
+                )));
     }
 
     private Mono<CommentResponse> createReplyComment(ReplyCommentCommand command, String documentId) {
-        return Mono.fromCallable(() -> new CommentResponse(
-                UUID.randomUUID().toString(),
-                documentId,
-                command.authorId(),
-                "", // authorName
-                "", // authorAvatar
-                command.content(),
-                null, // position - las respuestas no tienen posición específica
-                command.parentCommentId(),
-                false,
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                java.util.List.of()
-        ));
+        return userRepository.findById(command.authorId())
+                .map(user -> new CommentResponse(
+                        UUID.randomUUID().toString(),
+                        documentId,
+                        command.authorId(),
+                        user.getFullName(),
+                        user.getProfilePictureUrl(),
+                        command.content(),
+                        null, // position - las respuestas no tienen posición específica
+                        command.parentCommentId(),
+                        false,
+                        LocalDateTime.now(),
+                        LocalDateTime.now(),
+                        java.util.List.of()
+                ))
+                .switchIfEmpty(Mono.just(new CommentResponse(
+                        UUID.randomUUID().toString(),
+                        documentId,
+                        command.authorId(),
+                        "Unknown User",
+                        "",
+                        command.content(),
+                        null,
+                        command.parentCommentId(),
+                        false,
+                        LocalDateTime.now(),
+                        LocalDateTime.now(),
+                        java.util.List.of()
+                )));
     }
 
     private Mono<CommentResponse> storeComment(CommentResponse comment) {
@@ -479,17 +519,29 @@ public class CollaborationService implements CollaborationUseCase {
     }
 
     private Mono<SectionLockResponse> createSectionLock(LockSectionCommand command) {
-        return Mono.fromCallable(() -> new SectionLockResponse(
-                UUID.randomUUID().toString(),
-                command.documentId(),
-                command.userId(),
-                "", // userName
-                command.startPosition(),
-                command.endPosition(),
-                command.lockReason(),
-                LocalDateTime.now(),
-                LocalDateTime.now().plusMinutes(30) // Expira en 30 minutos
-        ));
+        return userRepository.findById(command.userId())
+                .map(user -> new SectionLockResponse(
+                        UUID.randomUUID().toString(),
+                        command.documentId(),
+                        command.userId(),
+                        user.getFullName(),
+                        command.startPosition(),
+                        command.endPosition(),
+                        command.lockReason(),
+                        LocalDateTime.now(),
+                        LocalDateTime.now().plusMinutes(30) // Expira en 30 minutos
+                ))
+                .switchIfEmpty(Mono.just(new SectionLockResponse(
+                        UUID.randomUUID().toString(),
+                        command.documentId(),
+                        command.userId(),
+                        "Unknown User",
+                        command.startPosition(),
+                        command.endPosition(),
+                        command.lockReason(),
+                        LocalDateTime.now(),
+                        LocalDateTime.now().plusMinutes(30)
+                )));
     }
 
     private Mono<SectionLockResponse> storeSectionLock(SectionLockResponse lock) {

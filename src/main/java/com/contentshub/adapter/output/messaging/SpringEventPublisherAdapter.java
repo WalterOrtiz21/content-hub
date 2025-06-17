@@ -3,7 +3,7 @@ package com.contentshub.adapter.output.messaging;
 import com.contentshub.application.port.output.CacheRepositoryPort;
 import com.contentshub.application.port.output.EventPublisherPort;
 import com.contentshub.domain.event.DomainEvent;
-import com.contentshub.infrastructure.config.WebSocketConfiguration;
+import com.contentshub.infrastructure.websocket.WebSocketManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * Implementación del Event Publisher usando Spring Events y WebSocket
+ * Implementación del Event Publisher sin dependencias circulares
  */
 @Component
 @RequiredArgsConstructor
@@ -30,7 +30,7 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
 
     private final ApplicationEventPublisher applicationEventPublisher;
     private final CacheRepositoryPort cacheRepository;
-    private final WebSocketConfiguration.WebSocketSessionManager webSocketSessionManager;
+    private final WebSocketManager webSocketManager; // Usando el manager independiente
     private final ObjectMapper objectMapper;
 
     // Event handlers registry
@@ -45,7 +45,6 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
 
     // Cache keys
     private static final String EVENT_HISTORY_PREFIX = "event_history:";
-    private static final String EVENT_STATS_KEY = "event_stats";
 
     @Override
     public Mono<Void> publish(DomainEvent event) {
@@ -82,7 +81,6 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
     }
 
     @Override
-    //@Retryable(value = {Exception.class}, maxAttempts = 3, backoff = @Backoff(delay = 1000))
     public Mono<Void> publishDelayed(DomainEvent event, Duration delay) {
         log.debug("Publishing delayed event: {} after {}", event.getEventType(), delay);
 
@@ -194,7 +192,7 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
                                 "timestamp", event.getOccurredAt()
                         ));
 
-                        webSocketSessionManager.broadcastMessage(eventJson);
+                        webSocketManager.broadcastMessage(eventJson);
                         log.debug("Event broadcasted via WebSocket: {}", event.getEventType());
 
                     } catch (Exception e) {
@@ -240,7 +238,7 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
                                     "timestamp", event.getOccurredAt()
                             ));
 
-                            webSocketSessionManager.sendToUser(userId, eventJson);
+                            webSocketManager.sendToUser(userId, eventJson);
                             log.debug("Event sent to user {} via WebSocket: {}", userId, event.getEventType());
 
                         } catch (Exception e) {
@@ -264,7 +262,6 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
 
         @Override
         public Mono<Void> sendToDocumentCollaborators(String documentId, DomainEvent event) {
-            // En una implementación real, buscarías los colaboradores del documento
             return Mono.fromRunnable(() -> {
                         try {
                             String eventJson = objectMapper.writeValueAsString(Map.of(
@@ -275,7 +272,7 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
                                     "timestamp", event.getOccurredAt()
                             ));
 
-                            webSocketSessionManager.broadcastMessage(eventJson);
+                            webSocketManager.sendToDocumentCollaborators(documentId, eventJson);
                             log.debug("Document event sent to collaborators: {}", event.getEventType());
 
                         } catch (Exception e) {
@@ -294,7 +291,7 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
                                     "notification", notification
                             ));
 
-                            webSocketSessionManager.sendToUser(userId, notificationJson);
+                            webSocketManager.sendToUser(userId, notificationJson);
                             log.debug("Notification sent to user {}: {}", userId, notification.title());
 
                         } catch (Exception e) {

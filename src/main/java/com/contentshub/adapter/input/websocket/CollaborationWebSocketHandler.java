@@ -3,6 +3,7 @@ package com.contentshub.adapter.input.websocket;
 import com.contentshub.application.port.input.CollaborationUseCase;
 import com.contentshub.domain.valueobject.UserId;
 import com.contentshub.infrastructure.security.JwtProvider;
+import com.contentshub.infrastructure.websocket.WebSocketManager;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * WebSocket Handler para colaboración en tiempo real en documentos
+ * Actualizado para usar WebSocketManager independiente
  */
 @Component
 @RequiredArgsConstructor
@@ -33,8 +35,9 @@ public class CollaborationWebSocketHandler implements WebSocketHandler {
     private final CollaborationUseCase collaborationUseCase;
     private final JwtProvider jwtProvider;
     private final ObjectMapper objectMapper;
+    private final WebSocketManager webSocketManager; // Usar el manager independiente
 
-    // Mapa de sesiones activas por documento
+    // Mapa de streams por documento
     private final Map<String, Sinks.Many<String>> documentSinks = new ConcurrentHashMap<>();
     private final Map<String, SessionInfo> activeSessions = new ConcurrentHashMap<>();
 
@@ -86,7 +89,12 @@ public class CollaborationWebSocketHandler implements WebSocketHandler {
         log.info("Usuario {} conectado al documento {} via WebSocket",
                 authInfo.username(), authInfo.documentId());
 
-        // Registrar sesión
+        // Registrar sesión en el manager
+        webSocketManager.addSession(session.getId(), session);
+        webSocketManager.associateUserSession(authInfo.userId().toString(), session.getId());
+        webSocketManager.associateDocumentSession(authInfo.documentId(), session.getId());
+
+        // Registrar sesión local
         SessionInfo sessionInfo = new SessionInfo(
                 session.getId(),
                 authInfo.userId(),
@@ -338,6 +346,9 @@ public class CollaborationWebSocketHandler implements WebSocketHandler {
         if (sink != null) {
             sink.tryEmitNext(message);
         }
+
+        // También usar el WebSocketManager para broadcast directo
+        webSocketManager.sendToDocumentCollaborators(documentId, message);
     }
 
     /**
@@ -357,7 +368,10 @@ public class CollaborationWebSocketHandler implements WebSocketHandler {
     private void cleanupSession(String sessionId, AuthenticationInfo authInfo) {
         log.info("Limpiando sesión WebSocket: {}", sessionId);
 
-        // Remover de sesiones activas
+        // Remover del manager
+        webSocketManager.removeSession(sessionId);
+
+        // Remover de sesiones activas locales
         SessionInfo sessionInfo = activeSessions.remove(sessionId);
 
         if (sessionInfo != null) {

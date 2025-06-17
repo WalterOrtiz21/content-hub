@@ -2,7 +2,6 @@ package com.contentshub.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.domain.ReactiveAuditorAware;
 import org.springframework.data.mongodb.config.EnableReactiveMongoAuditing;
 import org.springframework.data.r2dbc.config.EnableR2dbcAuditing;
@@ -11,26 +10,16 @@ import org.springframework.security.core.context.ReactiveSecurityContextHolder;
 import org.springframework.security.core.context.SecurityContext;
 import reactor.core.publisher.Mono;
 
-import java.util.Optional;
-
 /**
- * Configuración de auditoría para R2DBC y MongoDB
+ * Configuración de auditoría para R2DBC y MongoDB (completamente reactiva)
  */
 @Configuration
-@EnableR2dbcAuditing(auditorAwareRef = "auditorProvider")
+@EnableR2dbcAuditing(auditorAwareRef = "reactiveAuditorProvider")
 @EnableReactiveMongoAuditing(auditorAwareRef = "reactiveAuditorProvider")
 public class AuditConfiguration {
 
     /**
-     * Auditor para R2DBC (síncrono)
-     */
-    @Bean
-    public AuditorAware<String> auditorProvider() {
-        return new SpringSecurityAuditorAware();
-    }
-
-    /**
-     * Auditor reactivo para MongoDB
+     * Auditor reactivo para R2DBC y MongoDB
      */
     @Bean
     public ReactiveAuditorAware<String> reactiveAuditorProvider() {
@@ -38,35 +27,36 @@ public class AuditConfiguration {
     }
 
     /**
-     * Implementación de auditoría para R2DBC
-     */
-    private static class SpringSecurityAuditorAware implements AuditorAware<String> {
-        @Override
-        public Optional<String> getCurrentAuditor() {
-            // Para R2DBC, usamos un valor por defecto ya que no es reactivo
-            // En una implementación real, podrías usar ThreadLocal o RequestScope
-            return Optional.of("system");
-        }
-    }
-
-    /**
-     * Implementación reactiva de auditoría para MongoDB
+     * Implementación reactiva de auditoría que funciona tanto para R2DBC como MongoDB
      */
     private static class ReactiveSpringSecurityAuditorAware implements ReactiveAuditorAware<String> {
+
         @Override
         public Mono<String> getCurrentAuditor() {
             return ReactiveSecurityContextHolder.getContext()
                     .map(SecurityContext::getAuthentication)
                     .filter(Authentication::isAuthenticated)
                     .map(authentication -> {
-                        if (authentication.getPrincipal() instanceof
-                                com.contentshub.infrastructure.security.JwtAuthenticationConverter.JwtUserPrincipal jwtPrincipal) {
+                        // Extraer el auditor según el tipo de principal
+                        Object principal = authentication.getPrincipal();
+
+                        if (principal instanceof com.contentshub.infrastructure.security.JwtAuthenticationConverter.JwtUserPrincipal jwtPrincipal) {
                             return jwtPrincipal.getUsername();
                         }
+
+                        if (principal instanceof org.springframework.security.core.userdetails.UserDetails userDetails) {
+                            return userDetails.getUsername();
+                        }
+
+                        if (principal instanceof String username) {
+                            return username;
+                        }
+
+                        // Fallback al nombre de la autenticación
                         return authentication.getName();
                     })
-                    .defaultIfEmpty("system")
-                    .onErrorReturn("system");
+                    .switchIfEmpty(Mono.just("system")) // Usuario por defecto cuando no hay autenticación
+                    .onErrorReturn("system"); // En caso de error, usar "system"
         }
     }
 }
