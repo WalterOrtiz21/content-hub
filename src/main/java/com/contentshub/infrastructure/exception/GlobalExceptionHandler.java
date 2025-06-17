@@ -446,7 +446,7 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
                 .status(ex.getStatusCode().value())
-                .error(ex.getStatusCode().getReasonPhrase())
+                .error(ex.getMessage())
                 .message(ex.getReason() != null ? ex.getReason() : "Request processing failed")
                 .code("HTTP_" + ex.getStatusCode().value())
                 .build();

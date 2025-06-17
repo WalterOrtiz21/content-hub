@@ -6,6 +6,10 @@ spring:
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:dev}
 
+    # Permitir override de beans en caso de conflictos
+  main:
+    allow-bean-definition-overriding: true
+
   # WebFlux Configuration
   webflux:
     base-path: /api/v1

@@ -12,7 +12,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.security.Permission;
 import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;

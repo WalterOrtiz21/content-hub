@@ -1,7 +1,7 @@
 package com.contentshub.adapter.output.persistence.mongodb;
 
 import com.contentshub.application.port.output.DocumentRepositoryPort;
-import com.contentshub.domain.model.Document;
+import com.contentshub.domain.model.DocumentModel;
 import com.contentshub.domain.valueobject.DocumentStatus;
 import com.contentshub.domain.valueobject.DocumentType;
 import com.contentshub.domain.valueobject.UserId;
@@ -29,15 +29,15 @@ public class DocumentRepositoryAdapter implements DocumentRepositoryPort {
     private final ReactiveMongoTemplate mongoTemplate;
 
     @Override
-    public Mono<Document> save(Document document) {
-        return mongoTemplate.save(document)
+    public Mono<DocumentModel> save(DocumentModel documentModel) {
+        return mongoTemplate.save(documentModel)
                 .doOnSuccess(savedDoc -> log.debug("Document saved: {}", savedDoc.getId()))
                 .doOnError(error -> log.error("Error saving document: {}", error.getMessage()));
     }
 
     @Override
-    public Mono<Document> findById(String documentId) {
-        return mongoTemplate.findById(documentId, Document.class)
+    public Mono<DocumentModel> findById(String documentId) {
+        return mongoTemplate.findById(documentId, DocumentModel.class)
                 .doOnSuccess(doc -> {
                     if (doc != null) {
                         log.debug("Document found: {}", documentId);
@@ -50,89 +50,89 @@ public class DocumentRepositoryAdapter implements DocumentRepositoryPort {
 
     @Override
     public Mono<Void> deleteById(String documentId) {
-        return mongoTemplate.remove(Query.query(Criteria.where("id").is(documentId)), Document.class)
+        return mongoTemplate.remove(Query.query(Criteria.where("id").is(documentId)), DocumentModel.class)
                 .then()
                 .doOnSuccess(unused -> log.debug("Document deleted: {}", documentId))
                 .doOnError(error -> log.error("Error deleting document {}: {}", documentId, error.getMessage()));
     }
 
     @Override
-    public Flux<Document> findByOwnerId(UserId ownerId) {
+    public Flux<DocumentModel> findByOwnerId(UserId ownerId) {
         Query query = Query.query(Criteria.where("ownerId").is(ownerId));
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "updatedAt"));
 
-        return mongoTemplate.find(query, Document.class)
+        return mongoTemplate.find(query, DocumentModel.class)
                 .doOnNext(doc -> log.debug("Found document for owner {}: {}", ownerId, doc.getId()));
     }
 
     @Override
-    public Flux<Document> findByOwnerIdAndStatus(UserId ownerId, DocumentStatus status) {
+    public Flux<DocumentModel> findByOwnerIdAndStatus(UserId ownerId, DocumentStatus status) {
         Query query = Query.query(Criteria.where("ownerId").is(ownerId)
                 .and("status").is(status));
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "updatedAt"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findPublicDocuments() {
+    public Flux<DocumentModel> findPublicDocuments() {
         Query query = Query.query(Criteria.where("isPublic").is(true)
                 .and("status").is(DocumentStatus.PUBLISHED));
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "publishedAt"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findPublicDocumentsByType(DocumentType documentType) {
+    public Flux<DocumentModel> findPublicDocumentsByType(DocumentType documentType) {
         Query query = Query.query(Criteria.where("isPublic").is(true)
                 .and("status").is(DocumentStatus.PUBLISHED)
                 .and("documentType").is(documentType));
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "publishedAt"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findByTitleContaining(String titlePattern) {
+    public Flux<DocumentModel> findByTitleContaining(String titlePattern) {
         Query query = Query.query(Criteria.where("title").regex(titlePattern, "i"));
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "updatedAt"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findByContentContaining(String contentPattern) {
+    public Flux<DocumentModel> findByContentContaining(String contentPattern) {
         Query query = Query.query(Criteria.where("$text").is(contentPattern));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findByTags(Set<String> tags) {
+    public Flux<DocumentModel> findByTags(Set<String> tags) {
         Query query = Query.query(Criteria.where("tags").in(tags));
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "updatedAt"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findByCollaboratorId(UserId collaboratorId) {
+    public Flux<DocumentModel> findByCollaboratorId(UserId collaboratorId) {
         Query query = Query.query(Criteria.where("collaborators").in(collaboratorId));
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "updatedAt"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findReadableByUser(UserId userId) {
+    public Flux<DocumentModel> findReadableByUser(UserId userId) {
         Criteria criteria = new Criteria().orOperator(
                 // Documents owned by user
                 Criteria.where("ownerId").is(userId),
@@ -146,11 +146,11 @@ public class DocumentRepositoryAdapter implements DocumentRepositoryPort {
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "updatedAt"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findWritableByUser(UserId userId) {
+    public Flux<DocumentModel> findWritableByUser(UserId userId) {
         Criteria criteria = new Criteria().orOperator(
                 // Documents owned by user
                 Criteria.where("ownerId").is(userId),
@@ -162,11 +162,11 @@ public class DocumentRepositoryAdapter implements DocumentRepositoryPort {
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "updatedAt"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findRecentByUser(UserId userId, int limit) {
+    public Flux<DocumentModel> findRecentByUser(UserId userId, int limit) {
         Criteria criteria = new Criteria().orOperator(
                 Criteria.where("ownerId").is(userId),
                 Criteria.where("collaborators").in(userId)
@@ -176,117 +176,117 @@ public class DocumentRepositoryAdapter implements DocumentRepositoryPort {
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "updatedAt"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findMostViewed(int limit) {
+    public Flux<DocumentModel> findMostViewed(int limit) {
         Query query = Query.query(Criteria.where("status").is(DocumentStatus.PUBLISHED))
                 .limit(limit);
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "viewCount"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findMostLiked(int limit) {
+    public Flux<DocumentModel> findMostLiked(int limit) {
         Query query = Query.query(Criteria.where("status").is(DocumentStatus.PUBLISHED))
                 .limit(limit);
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "likeCount"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findByCreatedAtBetween(LocalDateTime start, LocalDateTime end) {
+    public Flux<DocumentModel> findByCreatedAtBetween(LocalDateTime start, LocalDateTime end) {
         Query query = Query.query(Criteria.where("createdAt").gte(start).lte(end));
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "createdAt"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findRecentlyModified(LocalDateTime since) {
+    public Flux<DocumentModel> findRecentlyModified(LocalDateTime since) {
         Query query = Query.query(Criteria.where("updatedAt").gte(since));
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "updatedAt"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
     public Mono<Long> countByOwnerId(UserId ownerId) {
         Query query = Query.query(Criteria.where("ownerId").is(ownerId));
-        return mongoTemplate.count(query, Document.class);
+        return mongoTemplate.count(query, DocumentModel.class);
     }
 
     @Override
     public Mono<Long> countByStatus(DocumentStatus status) {
         Query query = Query.query(Criteria.where("status").is(status));
-        return mongoTemplate.count(query, Document.class);
+        return mongoTemplate.count(query, DocumentModel.class);
     }
 
     @Override
     public Mono<Long> countPublicDocuments() {
         Query query = Query.query(Criteria.where("isPublic").is(true)
                 .and("status").is(DocumentStatus.PUBLISHED));
-        return mongoTemplate.count(query, Document.class);
+        return mongoTemplate.count(query, DocumentModel.class);
     }
 
     @Override
-    public Mono<Document> incrementViewCount(String documentId) {
+    public Mono<DocumentModel> incrementViewCount(String documentId) {
         Query query = Query.query(Criteria.where("id").is(documentId));
         Update update = new Update().inc("viewCount", 1);
 
-        return mongoTemplate.findAndModify(query, update, Document.class)
+        return mongoTemplate.findAndModify(query, update, DocumentModel.class)
                 .doOnSuccess(doc -> log.debug("View count incremented for document: {}", documentId));
     }
 
     @Override
-    public Mono<Document> incrementLikeCount(String documentId) {
+    public Mono<DocumentModel> incrementLikeCount(String documentId) {
         Query query = Query.query(Criteria.where("id").is(documentId));
         Update update = new Update().inc("likeCount", 1);
 
-        return mongoTemplate.findAndModify(query, update, Document.class)
+        return mongoTemplate.findAndModify(query, update, DocumentModel.class)
                 .doOnSuccess(doc -> log.debug("Like count incremented for document: {}", documentId));
     }
 
     @Override
-    public Mono<Document> decrementLikeCount(String documentId) {
+    public Mono<DocumentModel> decrementLikeCount(String documentId) {
         Query query = Query.query(Criteria.where("id").is(documentId));
         Update update = new Update().inc("likeCount", -1);
 
-        return mongoTemplate.findAndModify(query, update, Document.class)
+        return mongoTemplate.findAndModify(query, update, DocumentModel.class)
                 .doOnSuccess(doc -> log.debug("Like count decremented for document: {}", documentId));
     }
 
     @Override
-    public Flux<Document> findWithPagination(int page, int size) {
+    public Flux<DocumentModel> findWithPagination(int page, int size) {
         Query query = new Query()
                 .skip(page * size)
                 .limit(size);
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "updatedAt"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findByOwnerIdWithPagination(UserId ownerId, int page, int size) {
+    public Flux<DocumentModel> findByOwnerIdWithPagination(UserId ownerId, int page, int size) {
         Query query = Query.query(Criteria.where("ownerId").is(ownerId))
                 .skip(page * size)
                 .limit(size);
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "updatedAt"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findByCriteria(DocumentSearchCriteria criteria) {
+    public Flux<DocumentModel> findByCriteria(DocumentSearchCriteria criteria) {
         Query query = buildQueryFromCriteria(criteria);
 
         if (criteria.page() != null && criteria.size() != null) {
@@ -296,17 +296,17 @@ public class DocumentRepositoryAdapter implements DocumentRepositoryPort {
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.DESC, "updatedAt"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
-    public Flux<Document> findArchivedDocuments(LocalDateTime cutoffDate) {
+    public Flux<DocumentModel> findArchivedDocuments(LocalDateTime cutoffDate) {
         Query query = Query.query(Criteria.where("status").is(DocumentStatus.ARCHIVED)
                 .and("archivedAt").lte(cutoffDate));
         query.with(org.springframework.data.domain.Sort.by(
                 org.springframework.data.domain.Sort.Direction.ASC, "archivedAt"));
 
-        return mongoTemplate.find(query, Document.class);
+        return mongoTemplate.find(query, DocumentModel.class);
     }
 
     @Override
@@ -324,28 +324,28 @@ public class DocumentRepositoryAdapter implements DocumentRepositoryPort {
     }
 
     @Override
-    public Flux<Document> findRelatedDocuments(String documentId, int limit) {
+    public Flux<DocumentModel> findRelatedDocuments(String documentId, int limit) {
         return findById(documentId)
-                .flatMapMany(document -> {
-                    if (document.getTags() == null || document.getTags().isEmpty()) {
+                .flatMapMany(documentModel -> {
+                    if (documentModel.getTags() == null || documentModel.getTags().isEmpty()) {
                         return Flux.empty();
                     }
 
-                    Query query = Query.query(Criteria.where("tags").in(document.getTags())
+                    Query query = Query.query(Criteria.where("tags").in(documentModel.getTags())
                                     .and("id").ne(documentId)
                                     .and("status").is(DocumentStatus.PUBLISHED))
                             .limit(limit);
                     query.with(org.springframework.data.domain.Sort.by(
                             org.springframework.data.domain.Sort.Direction.DESC, "viewCount"));
 
-                    return mongoTemplate.find(query, Document.class);
+                    return mongoTemplate.find(query, DocumentModel.class);
                 });
     }
 
     @Override
     public Mono<Boolean> canUserAccessDocument(String documentId, UserId userId) {
         return findById(documentId)
-                .map(document -> document.canRead(userId))
+                .map(documentModel -> documentModel.canRead(userId))
                 .defaultIfEmpty(false);
     }
 

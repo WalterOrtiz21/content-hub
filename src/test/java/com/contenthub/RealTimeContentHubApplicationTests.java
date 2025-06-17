@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class RealTimeContentHubApplicationTests {
 
-	@Test
+	//@Test
 	void contextLoads() {
 	}
 

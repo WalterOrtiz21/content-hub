@@ -8,8 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.retry.annotation.Backoff;
-import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -84,7 +82,7 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
     }
 
     @Override
-    @Retryable(value = {Exception.class}, maxAttempts = 3, backoff = @Backoff(delay = 1000))
+    //@Retryable(value = {Exception.class}, maxAttempts = 3, backoff = @Backoff(delay = 1000))
     public Mono<Void> publishDelayed(DomainEvent event, Duration delay) {
         log.debug("Publishing delayed event: {} after {}", event.getEventType(), delay);
 
@@ -204,7 +202,7 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
                     }
                 })
                 .subscribeOn(Schedulers.boundedElastic())
-                .onErrorResume(error -> Mono.empty()); // No fallar la publicación por esto
+                .onErrorResume(error -> Mono.empty()).then(); // No fallar la publicación por esto
     }
 
     /**
@@ -217,11 +215,10 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
             return Mono.empty();
         }
 
-        return Flux.fromIterable(handlers)
-                .cast(EventHandler.class)
+        return Flux.<EventHandler<DomainEvent>>fromIterable((List<EventHandler<DomainEvent>>) (List<?>) handlers)
                 .flatMap(handler -> handler.handle(event)
                         .doOnError(error -> log.error("Event handler failed for {}: {}",
-                                event.getEventType(), error.getMessage()))
+                                event.getEventType(), error.toString()))
                         .onErrorResume(error -> Mono.empty()))
                 .then()
                 .subscribeOn(Schedulers.boundedElastic());
@@ -250,7 +247,7 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
                             log.warn("Failed to send event to user {} via WebSocket: {}", userId, e.getMessage());
                         }
                     })
-                    .subscribeOn(Schedulers.boundedElastic());
+                    .subscribeOn(Schedulers.boundedElastic()).then();
         }
 
         @Override
@@ -285,7 +282,7 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
                             log.warn("Failed to send document event to collaborators: {}", e.getMessage());
                         }
                     })
-                    .subscribeOn(Schedulers.boundedElastic());
+                    .subscribeOn(Schedulers.boundedElastic()).then();
         }
 
         @Override
@@ -304,7 +301,7 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
                             log.warn("Failed to send notification to user {}: {}", userId, e.getMessage());
                         }
                     })
-                    .subscribeOn(Schedulers.boundedElastic());
+                    .subscribeOn(Schedulers.boundedElastic()).then();
         }
     }
 
@@ -319,7 +316,7 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
                         // En una implementación real, configurarías y enviarías emails
                         log.info("Email would be sent to {} for event: {}", recipientEmail, event.getEventType());
                     })
-                    .subscribeOn(Schedulers.boundedElastic());
+                    .subscribeOn(Schedulers.boundedElastic()).then();
         }
 
         @Override
@@ -328,7 +325,7 @@ public class SpringEventPublisherAdapter implements EventPublisherPort {
                         // En una implementación real, usarías un servicio de email
                         log.info("Email notification would be sent to {}: {}", recipientEmail, notification.subject());
                     })
-                    .subscribeOn(Schedulers.boundedElastic());
+                    .subscribeOn(Schedulers.boundedElastic()).then();
         }
 
         @Override

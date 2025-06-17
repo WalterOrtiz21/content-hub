@@ -331,13 +331,21 @@ public class AuthenticationController {
     }
 
     private UserId extractUserIdFromPrincipal(Object principal) {
-        // Implementar según tu JwtAuthenticationConverter
-        // Por ahora, devolver un ID de ejemplo
+        if (principal instanceof com.contentshub.infrastructure.security.JwtAuthenticationConverter.JwtUserPrincipal jwtPrincipal) {
+            return UserId.of(jwtPrincipal.getUserId());
+        }
+
+        // Fallback para casos de testing o desarrollo
+        log.warn("Extracting user ID from principal of type: {}", principal.getClass());
         return UserId.of(1L);
     }
 
     private String extractTokenFromPrincipal(Object principal) {
-        // Implementar según tu JwtAuthenticationConverter
+        if (principal instanceof com.contentshub.infrastructure.security.JwtAuthenticationConverter.JwtUserPrincipal jwtPrincipal) {
+            return jwtPrincipal.getToken();
+        }
+
+        log.warn("Cannot extract token from principal of type: {}", principal.getClass());
         return "";
     }
 

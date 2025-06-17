@@ -14,6 +14,7 @@ import org.springframework.web.reactive.socket.WebSocketSession;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Sinks;
+import reactor.core.scheduler.Schedulers;
 
 import java.net.URI;
 import java.time.Duration;
@@ -195,7 +196,7 @@ public class CollaborationWebSocketHandler implements WebSocketHandler {
                         log.error("Error procesando mensaje de sesión {}: {}", sessionId, e.getMessage());
                     }
                 })
-                .subscribeOn(reactor.core.scheduler.Schedulers.boundedElastic());
+                .subscribeOn(Schedulers.boundedElastic()).then();
     }
 
     /**

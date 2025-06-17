@@ -409,7 +409,16 @@ public class UserController {
      * Métodos auxiliares
      */
     private String extractUsernameFromPrincipal(Object principal) {
-        // Implementar según tu JwtAuthenticationConverter
+        if (principal instanceof com.contentshub.infrastructure.security.JwtAuthenticationConverter.JwtUserPrincipal jwtPrincipal) {
+            return jwtPrincipal.getUsername();
+        }
+
+        if (principal instanceof org.springframework.security.core.userdetails.UserDetails userDetails) {
+            return userDetails.getUsername();
+        }
+
+        // Fallback para casos de testing o desarrollo
+        log.warn("Extracting username from principal of type: {}", principal.getClass());
         return "system";
     }
 
@@ -459,7 +468,7 @@ public class UserController {
             String username,
 
             @NotBlank(message = "Email es requerido")
-            @Email(message = "Email debe ser válido")
+            @jakarta.validation.constraints.Email(message = "Email debe ser válido")
             String email,
 
             @NotBlank(message = "Password es requerido")

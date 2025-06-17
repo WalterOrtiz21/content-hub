@@ -647,7 +647,12 @@ public class DocumentController {
      * Métodos auxiliares
      */
     private UserId extractUserIdFromPrincipal(Object principal) {
-        // Implementar según tu JwtAuthenticationConverter
+        if (principal instanceof com.contentshub.infrastructure.security.JwtAuthenticationConverter.JwtUserPrincipal jwtPrincipal) {
+            return UserId.of(jwtPrincipal.getUserId());
+        }
+
+        // Fallback para casos de testing o desarrollo
+        log.warn("Extracting user ID from principal of type: {}", principal.getClass());
         return UserId.of(1L);
     }
 

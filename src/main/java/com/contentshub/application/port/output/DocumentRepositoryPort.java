@@ -1,6 +1,6 @@
 package com.contentshub.application.port.output;
 
-import com.contentshub.domain.model.Document;
+import com.contentshub.domain.model.DocumentModel;
 import com.contentshub.domain.valueobject.DocumentStatus;
 import com.contentshub.domain.valueobject.DocumentType;
 import com.contentshub.domain.valueobject.UserId;
@@ -19,12 +19,12 @@ public interface DocumentRepositoryPort {
     /**
      * Guardar un documento
      */
-    Mono<Document> save(Document document);
+    Mono<DocumentModel> save(DocumentModel documentModel);
 
     /**
      * Buscar documento por ID
      */
-    Mono<Document> findById(String documentId);
+    Mono<DocumentModel> findById(String documentId);
 
     /**
      * Eliminar documento por ID
@@ -34,77 +34,77 @@ public interface DocumentRepositoryPort {
     /**
      * Buscar documentos por propietario
      */
-    Flux<Document> findByOwnerId(UserId ownerId);
+    Flux<DocumentModel> findByOwnerId(UserId ownerId);
 
     /**
      * Buscar documentos por propietario y estado
      */
-    Flux<Document> findByOwnerIdAndStatus(UserId ownerId, DocumentStatus status);
+    Flux<DocumentModel> findByOwnerIdAndStatus(UserId ownerId, DocumentStatus status);
 
     /**
      * Buscar documentos públicos y publicados
      */
-    Flux<Document> findPublicDocuments();
+    Flux<DocumentModel> findPublicDocuments();
 
     /**
      * Buscar documentos públicos por tipo
      */
-    Flux<Document> findPublicDocumentsByType(DocumentType documentType);
+    Flux<DocumentModel> findPublicDocumentsByType(DocumentType documentType);
 
     /**
      * Buscar documentos por título (búsqueda de texto)
      */
-    Flux<Document> findByTitleContaining(String titlePattern);
+    Flux<DocumentModel> findByTitleContaining(String titlePattern);
 
     /**
      * Buscar documentos por contenido (búsqueda de texto completo)
      */
-    Flux<Document> findByContentContaining(String contentPattern);
+    Flux<DocumentModel> findByContentContaining(String contentPattern);
 
     /**
      * Buscar documentos por tags
      */
-    Flux<Document> findByTags(Set<String> tags);
+    Flux<DocumentModel> findByTags(Set<String> tags);
 
     /**
      * Buscar documentos donde el usuario es colaborador
      */
-    Flux<Document> findByCollaboratorId(UserId collaboratorId);
+    Flux<DocumentModel> findByCollaboratorId(UserId collaboratorId);
 
     /**
      * Buscar documentos que el usuario puede leer
      */
-    Flux<Document> findReadableByUser(UserId userId);
+    Flux<DocumentModel> findReadableByUser(UserId userId);
 
     /**
      * Buscar documentos que el usuario puede escribir
      */
-    Flux<Document> findWritableByUser(UserId userId);
+    Flux<DocumentModel> findWritableByUser(UserId userId);
 
     /**
      * Buscar documentos recientes por usuario
      */
-    Flux<Document> findRecentByUser(UserId userId, int limit);
+    Flux<DocumentModel> findRecentByUser(UserId userId, int limit);
 
     /**
      * Buscar documentos populares (más vistos)
      */
-    Flux<Document> findMostViewed(int limit);
+    Flux<DocumentModel> findMostViewed(int limit);
 
     /**
      * Buscar documentos más gustados
      */
-    Flux<Document> findMostLiked(int limit);
+    Flux<DocumentModel> findMostLiked(int limit);
 
     /**
      * Buscar documentos creados en un rango de fechas
      */
-    Flux<Document> findByCreatedAtBetween(LocalDateTime start, LocalDateTime end);
+    Flux<DocumentModel> findByCreatedAtBetween(LocalDateTime start, LocalDateTime end);
 
     /**
      * Buscar documentos modificados recientemente
      */
-    Flux<Document> findRecentlyModified(LocalDateTime since);
+    Flux<DocumentModel> findRecentlyModified(LocalDateTime since);
 
     /**
      * Contar documentos por propietario
@@ -124,37 +124,37 @@ public interface DocumentRepositoryPort {
     /**
      * Incrementar contador de vistas
      */
-    Mono<Document> incrementViewCount(String documentId);
+    Mono<DocumentModel> incrementViewCount(String documentId);
 
     /**
      * Incrementar contador de likes
      */
-    Mono<Document> incrementLikeCount(String documentId);
+    Mono<DocumentModel> incrementLikeCount(String documentId);
 
     /**
      * Decrementar contador de likes
      */
-    Mono<Document> decrementLikeCount(String documentId);
+    Mono<DocumentModel> decrementLikeCount(String documentId);
 
     /**
      * Buscar documentos con paginación
      */
-    Flux<Document> findWithPagination(int page, int size);
+    Flux<DocumentModel> findWithPagination(int page, int size);
 
     /**
      * Buscar documentos por propietario con paginación
      */
-    Flux<Document> findByOwnerIdWithPagination(UserId ownerId, int page, int size);
+    Flux<DocumentModel> findByOwnerIdWithPagination(UserId ownerId, int page, int size);
 
     /**
      * Búsqueda avanzada con múltiples criterios
      */
-    Flux<Document> findByCriteria(DocumentSearchCriteria criteria);
+    Flux<DocumentModel> findByCriteria(DocumentSearchCriteria criteria);
 
     /**
      * Buscar documentos archivados para limpieza
      */
-    Flux<Document> findArchivedDocuments(LocalDateTime cutoffDate);
+    Flux<DocumentModel> findArchivedDocuments(LocalDateTime cutoffDate);
 
     /**
      * Obtener estadísticas de documento
@@ -164,7 +164,7 @@ public interface DocumentRepositoryPort {
     /**
      * Buscar documentos relacionados (por tags similares)
      */
-    Flux<Document> findRelatedDocuments(String documentId, int limit);
+    Flux<DocumentModel> findRelatedDocuments(String documentId, int limit);
 
     /**
      * Verificar si un usuario puede acceder a un documento

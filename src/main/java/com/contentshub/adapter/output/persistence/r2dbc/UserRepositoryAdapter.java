@@ -470,6 +470,6 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
                 .map(userMapper::mapToPermission)
                 .all()
                 .collect(Collectors.toSet())
-                .map(permissions -> role.withPermissions(permissions));
+                .map(role::withPermissions);
     }
 }

@@ -33,9 +33,7 @@ import java.util.TimeZone;
 @EnableWebFlux
 @EnableAsync
 @EnableScheduling
-@EnableR2dbcAuditing
 @EnableR2dbcRepositories(basePackages = "com.contentshub.infrastructure.persistence.r2dbc")
-@EnableReactiveMongoAuditing
 @EnableReactiveMongoRepositories(basePackages = "com.contentshub.infrastructure.persistence.mongodb")
 @EnableRedisRepositories(basePackages = "com.contentshub.infrastructure.persistence.redis")
 @OpenAPIDefinition(

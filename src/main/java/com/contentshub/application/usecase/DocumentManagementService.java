@@ -6,8 +6,7 @@ import com.contentshub.application.port.output.DocumentRepositoryPort;
 import com.contentshub.application.port.output.EventPublisherPort;
 import com.contentshub.application.port.output.UserRepositoryPort;
 import com.contentshub.domain.event.DocumentEvents;
-import com.contentshub.domain.exception.DomainExceptions;
-import com.contentshub.domain.model.Document;
+import com.contentshub.domain.model.DocumentModel;
 import com.contentshub.domain.valueobject.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -59,15 +58,15 @@ public class DocumentManagementService implements DocumentManagementUseCase {
         log.debug("Creating document from template: {} for user: {}", command.templateId(), command.ownerId());
 
         return loadTemplate(command.templateId())
-                .map(templateContent -> Document.createFromTemplate(
+                .map(templateContent -> DocumentModel.createFromTemplate(
                         command.title(),
                         templateContent,
                         command.ownerId(),
                         DocumentType.fromValue("template") // Ajustar según el template
                 ))
-                .flatMap(document -> command.isPublic() ?
-                        Mono.just(document.makePublic(command.ownerId())) :
-                        Mono.just(document))
+                .flatMap(documentModel -> command.isPublic() ?
+                        Mono.just(documentModel.makePublic(command.ownerId())) :
+                        Mono.just(documentModel))
                 .flatMap(documentRepository::save)
                 .flatMap(this::cacheDocument)
                 .flatMap(this::publishDocumentCreatedEvent)
@@ -82,12 +81,12 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         String cacheKey = DOCUMENT_CACHE_PREFIX + documentId;
 
-        return cacheRepository.get(cacheKey, Document.class)
+        return cacheRepository.get(cacheKey, DocumentModel.class)
                 .switchIfEmpty(documentRepository.findById(documentId)
                         .flatMap(this::cacheDocument))
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .flatMap(document -> validateDocumentAccess(document, requestingUserId))
-                .flatMap(document -> recordDocumentView(document, requestingUserId))
+                .flatMap(documentModel -> validateDocumentAccess(documentModel, requestingUserId))
+                .flatMap(documentModel -> recordDocumentView(documentModel, requestingUserId))
                 .flatMap(this::convertToResponse)
                 .doOnSuccess(response -> log.debug("Document retrieved: {}", response.title()))
                 .doOnError(error -> log.error("Error getting document {}: {}", documentId, error.getMessage()));
@@ -99,8 +98,8 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(command.documentId())
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(command.documentId())))
-                .flatMap(document -> validateDocumentWriteAccess(document, command.modifiedBy()))
-                .map(document -> document.updateContent(command.content(), command.modifiedBy()))
+                .flatMap(documentModel -> validateDocumentWriteAccess(documentModel, command.modifiedBy()))
+                .map(documentModel -> documentModel.updateContent(command.content(), command.modifiedBy()))
                 .flatMap(documentRepository::save)
                 .flatMap(this::invalidateDocumentCache)
                 .flatMap(this::publishContentUpdatedEvent)
@@ -116,13 +115,13 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(command.documentId())
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(command.documentId())))
-                .flatMap(document -> validateDocumentWriteAccess(document, command.modifiedBy()))
-                .map(document -> {
-                    String oldTitle = document.getTitle();
-                    Document updatedDocument = document.updateTitle(command.newTitle(), command.modifiedBy());
-                    return new DocumentWithOldTitle(updatedDocument, oldTitle);
+                .flatMap(documentModel -> validateDocumentWriteAccess(documentModel, command.modifiedBy()))
+                .map(documentModel -> {
+                    String oldTitle = documentModel.getTitle();
+                    DocumentModel updatedDocumentModel = documentModel.updateTitle(command.newTitle(), command.modifiedBy());
+                    return new DocumentWithOldTitle(updatedDocumentModel, oldTitle);
                 })
-                .flatMap(docWithOldTitle -> documentRepository.save(docWithOldTitle.document())
+                .flatMap(docWithOldTitle -> documentRepository.save(docWithOldTitle.documentModel())
                         .flatMap(this::invalidateDocumentCache)
                         .flatMap(doc -> publishTitleUpdatedEvent(doc, docWithOldTitle.oldTitle())))
                 .flatMap(this::convertToResponse)
@@ -137,10 +136,10 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .flatMap(document -> validateDocumentWriteAccess(document, publishedBy))
-                .filter(document -> document.getStatus() != DocumentStatus.PUBLISHED)
+                .flatMap(documentModel -> validateDocumentWriteAccess(documentModel, publishedBy))
+                .filter(documentModel -> documentModel.getStatus() != DocumentStatus.PUBLISHED)
                 .switchIfEmpty(Mono.error(new DocumentAlreadyPublishedException(documentId)))
-                .map(document -> document.publish(publishedBy))
+                .map(documentModel -> documentModel.publish(publishedBy))
                 .flatMap(documentRepository::save)
                 .flatMap(this::invalidateDocumentCache)
                 .flatMap(this::publishDocumentPublishedEvent)
@@ -155,11 +154,11 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .flatMap(document -> validateDocumentWriteAccess(document, archivedBy))
-                .map(document -> document.archive(archivedBy))
+                .flatMap(documentModel -> validateDocumentWriteAccess(documentModel, archivedBy))
+                .map(documentModel -> documentModel.archive(archivedBy))
                 .flatMap(documentRepository::save)
                 .flatMap(this::invalidateDocumentCache)
-                .flatMap(document -> publishDocumentArchivedEvent(document, archivedBy, reason))
+                .flatMap(documentModel -> publishDocumentArchivedEvent(documentModel, archivedBy, reason))
                 .flatMap(this::convertToResponse)
                 .doOnSuccess(response -> log.info("Document archived: {}", response.title()))
                 .doOnError(error -> log.error("Error archiving document {}: {}", documentId, error.getMessage()));
@@ -171,11 +170,11 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .flatMap(document -> validateDocumentWriteAccess(document, restoredBy))
-                .filter(Document::isArchived)
+                .flatMap(documentModel -> validateDocumentWriteAccess(documentModel, restoredBy))
+                .filter(DocumentModel::isArchived)
                 .switchIfEmpty(Mono.error(new InvalidDocumentStateException(
                         "Document is not archived and cannot be restored")))
-                .map(document -> document.restore(restoredBy))
+                .map(documentModel -> documentModel.restore(restoredBy))
                 .flatMap(documentRepository::save)
                 .flatMap(this::invalidateDocumentCache)
                 .flatMap(this::convertToResponse)
@@ -189,9 +188,9 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .filter(document -> document.getOwnerId().equals(deletedBy))
+                .filter(documentModel -> documentModel.getOwnerId().equals(deletedBy))
                 .switchIfEmpty(Mono.error(new DocumentAccessDeniedException(documentId, deletedBy)))
-                .flatMap(document -> publishDocumentDeletedEvent(document, deletedBy))
+                .flatMap(documentModel -> publishDocumentDeletedEvent(documentModel, deletedBy))
                 .then(documentRepository.deleteById(documentId))
                 .then(invalidateDocumentCacheById(documentId))
                 .doOnSuccess(unused -> log.info("Document deleted: {}", documentId))
@@ -251,11 +250,11 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .flatMap(document -> validateDocumentWriteAccess(document, addedBy))
-                .map(document -> document.addCollaborator(collaboratorId, addedBy))
+                .flatMap(documentModel -> validateDocumentWriteAccess(documentModel, addedBy))
+                .map(documentModel -> documentModel.addCollaborator(collaboratorId, addedBy))
                 .flatMap(documentRepository::save)
                 .flatMap(this::invalidateDocumentCache)
-                .flatMap(document -> publishCollaboratorAddedEvent(document, collaboratorId, addedBy))
+                .flatMap(documentModel -> publishCollaboratorAddedEvent(documentModel, collaboratorId, addedBy))
                 .flatMap(this::convertToResponse)
                 .doOnSuccess(response -> log.info("Collaborator added to document: {}", response.title()))
                 .doOnError(error -> log.error("Error adding collaborator to document {}: {}",
@@ -268,11 +267,11 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .flatMap(document -> validateDocumentWriteAccess(document, removedBy))
-                .map(document -> document.removeCollaborator(collaboratorId, removedBy))
+                .flatMap(documentModel -> validateDocumentWriteAccess(documentModel, removedBy))
+                .map(documentModel -> documentModel.removeCollaborator(collaboratorId, removedBy))
                 .flatMap(documentRepository::save)
                 .flatMap(this::invalidateDocumentCache)
-                .flatMap(document -> publishCollaboratorRemovedEvent(document, collaboratorId, removedBy))
+                .flatMap(documentModel -> publishCollaboratorRemovedEvent(documentModel, collaboratorId, removedBy))
                 .flatMap(this::convertToResponse)
                 .doOnSuccess(response -> log.info("Collaborator removed from document: {}", response.title()))
                 .doOnError(error -> log.error("Error removing collaborator from document {}: {}",
@@ -285,8 +284,8 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .flatMap(document -> validateDocumentWriteAccess(document, modifiedBy))
-                .map(document -> document.makePublic(modifiedBy))
+                .flatMap(documentModel -> validateDocumentWriteAccess(documentModel, modifiedBy))
+                .map(documentModel -> documentModel.makePublic(modifiedBy))
                 .flatMap(documentRepository::save)
                 .flatMap(this::invalidateDocumentCache)
                 .flatMap(this::convertToResponse)
@@ -300,8 +299,8 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .flatMap(document -> validateDocumentWriteAccess(document, modifiedBy))
-                .map(document -> document.makePrivate(modifiedBy))
+                .flatMap(documentModel -> validateDocumentWriteAccess(documentModel, modifiedBy))
+                .map(documentModel -> documentModel.makePrivate(modifiedBy))
                 .flatMap(documentRepository::save)
                 .flatMap(this::invalidateDocumentCache)
                 .flatMap(this::convertToResponse)
@@ -315,13 +314,13 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .flatMap(document -> validateDocumentWriteAccess(document, modifiedBy))
-                .map(document -> {
-                    Set<String> oldTags = document.getTags();
-                    Document updatedDocument = document.addTags(tags, modifiedBy);
-                    return new DocumentWithOldTags(updatedDocument, oldTags);
+                .flatMap(documentModel -> validateDocumentWriteAccess(documentModel, modifiedBy))
+                .map(documentModel -> {
+                    Set<String> oldTags = documentModel.getTags();
+                    DocumentModel updatedDocumentModel = documentModel.addTags(tags, modifiedBy);
+                    return new DocumentWithOldTags(updatedDocumentModel, oldTags);
                 })
-                .flatMap(docWithOldTags -> documentRepository.save(docWithOldTags.document())
+                .flatMap(docWithOldTags -> documentRepository.save(docWithOldTags.documentModel())
                         .flatMap(this::invalidateDocumentCache)
                         .flatMap(doc -> publishTagsUpdatedEvent(doc, docWithOldTags.oldTags())))
                 .flatMap(this::convertToResponse)
@@ -335,13 +334,13 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .flatMap(document -> validateDocumentWriteAccess(document, modifiedBy))
-                .map(document -> {
-                    Set<String> oldTags = document.getTags();
-                    Document updatedDocument = document.removeTags(tags, modifiedBy);
-                    return new DocumentWithOldTags(updatedDocument, oldTags);
+                .flatMap(documentModel -> validateDocumentWriteAccess(documentModel, modifiedBy))
+                .map(documentModel -> {
+                    Set<String> oldTags = documentModel.getTags();
+                    DocumentModel updatedDocumentModel = documentModel.removeTags(tags, modifiedBy);
+                    return new DocumentWithOldTags(updatedDocumentModel, oldTags);
                 })
-                .flatMap(docWithOldTags -> documentRepository.save(docWithOldTags.document())
+                .flatMap(docWithOldTags -> documentRepository.save(docWithOldTags.documentModel())
                         .flatMap(this::invalidateDocumentCache)
                         .flatMap(doc -> publishTagsUpdatedEvent(doc, docWithOldTags.oldTags())))
                 .flatMap(this::convertToResponse)
@@ -356,7 +355,7 @@ public class DocumentManagementService implements DocumentManagementUseCase {
         return documentRepository.incrementLikeCount(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
                 .flatMap(this::invalidateDocumentCache)
-                .flatMap(document -> publishDocumentLikedEvent(document, userId))
+                .flatMap(documentModel -> publishDocumentLikedEvent(documentModel, userId))
                 .flatMap(this::convertToResponse)
                 .doOnSuccess(response -> log.info("Document liked: {}", response.title()))
                 .doOnError(error -> log.error("Error liking document {}: {}", documentId, error.getMessage()));
@@ -380,7 +379,7 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.incrementViewCount(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .flatMap(document -> publishDocumentViewedEvent(document, userId, ipAddress))
+                .flatMap(documentModel -> publishDocumentViewedEvent(documentModel, userId, ipAddress))
                 .flatMap(this::convertToResponse)
                 .doOnSuccess(response -> log.debug("Document view recorded: {}", response.title()))
                 .doOnError(error -> log.error("Error recording document view {}: {}", documentId, error.getMessage()));
@@ -392,8 +391,8 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .flatMap(document -> validateDocumentAccess(document, requestingUserId))
-                .flatMapMany(document -> documentRepository.findDocumentVersions(documentId))
+                .flatMap(documentModel -> validateDocumentAccess(documentModel, requestingUserId))
+                .flatMapMany(documentModel -> documentRepository.findDocumentVersions(documentId))
                 .map(version -> new DocumentVersionResponse(
                         version.versionId(),
                         version.documentId(),
@@ -414,8 +413,8 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .flatMap(document -> validateDocumentAccess(document, requestingUserId))
-                .flatMap(document -> documentRepository.getDocumentStatistics(documentId))
+                .flatMap(documentModel -> validateDocumentAccess(documentModel, requestingUserId))
+                .flatMap(documentModel -> documentRepository.getDocumentStatistics(documentId))
                 .map(stats -> new DocumentStatisticsResponse(
                         stats.documentId(),
                         stats.viewCount(),
@@ -448,13 +447,13 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .flatMap(document -> validateDocumentAccess(document, userId))
-                .map(originalDocument -> Document.createNew(
+                .flatMap(documentModel -> validateDocumentAccess(documentModel, userId))
+                .map(originalDocumentModel -> DocumentModel.createNew(
                                 newTitle,
-                                originalDocument.getContent(),
+                                originalDocumentModel.getContent(),
                                 userId,
-                                originalDocument.getDocumentType())
-                        .withTags(originalDocument.getTags())
+                                originalDocumentModel.getDocumentType())
+                        .withTags(originalDocumentModel.getTags())
                         .withIsPublic(false)) // Always create duplicates as private
                 .flatMap(documentRepository::save)
                 .flatMap(this::cacheDocument)
@@ -470,8 +469,8 @@ public class DocumentManagementService implements DocumentManagementUseCase {
 
         return documentRepository.findById(documentId)
                 .switchIfEmpty(Mono.error(new DocumentNotFoundException(documentId)))
-                .flatMap(document -> validateDocumentAccess(document, userId))
-                .flatMap(document -> convertDocumentToFormat(document, format))
+                .flatMap(documentModel -> validateDocumentAccess(documentModel, userId))
+                .flatMap(documentModel -> convertDocumentToFormat(documentModel, format))
                 .doOnSuccess(response -> log.info("Document exported: {} in format: {}", documentId, format))
                 .doOnError(error -> log.error("Error exporting document {}: {}", documentId, error.getMessage()));
     }
@@ -485,9 +484,9 @@ public class DocumentManagementService implements DocumentManagementUseCase {
         return Mono.empty();
     }
 
-    private Mono<Document> createDocumentEntity(CreateDocumentCommand command) {
+    private Mono<DocumentModel> createDocumentEntity(CreateDocumentCommand command) {
         return Mono.fromCallable(() -> {
-            Document document = Document.createNew(
+            DocumentModel documentModel = DocumentModel.createNew(
                     command.title(),
                     command.content(),
                     command.ownerId(),
@@ -495,14 +494,14 @@ public class DocumentManagementService implements DocumentManagementUseCase {
             );
 
             if (command.isPublic()) {
-                document = document.makePublic(command.ownerId());
+                documentModel = documentModel.makePublic(command.ownerId());
             }
 
             if (command.tags() != null && !command.tags().isEmpty()) {
-                document = document.addTags(command.tags(), command.ownerId());
+                documentModel = documentModel.addTags(command.tags(), command.ownerId());
             }
 
-            return document;
+            return documentModel;
         });
     }
 
@@ -511,42 +510,42 @@ public class DocumentManagementService implements DocumentManagementUseCase {
         return Mono.just(DocumentContent.plainText("Template content"));
     }
 
-    private Mono<Document> validateDocumentAccess(Document document, UserId userId) {
-        if (!document.canRead(userId)) {
-            return Mono.error(new DocumentAccessDeniedException(document.getId(), userId));
+    private Mono<DocumentModel> validateDocumentAccess(DocumentModel documentModel, UserId userId) {
+        if (!documentModel.canRead(userId)) {
+            return Mono.error(new DocumentAccessDeniedException(documentModel.getId(), userId));
         }
-        return Mono.just(document);
+        return Mono.just(documentModel);
     }
 
-    private Mono<Document> validateDocumentWriteAccess(Document document, UserId userId) {
-        if (!document.canWrite(userId)) {
-            return Mono.error(new DocumentAccessDeniedException(document.getId(), userId));
+    private Mono<DocumentModel> validateDocumentWriteAccess(DocumentModel documentModel, UserId userId) {
+        if (!documentModel.canWrite(userId)) {
+            return Mono.error(new DocumentAccessDeniedException(documentModel.getId(), userId));
         }
-        return Mono.just(document);
+        return Mono.just(documentModel);
     }
 
-    private Mono<Document> recordDocumentView(Document document, UserId userId) {
-        return documentRepository.incrementViewCount(document.getId())
+    private Mono<DocumentModel> recordDocumentView(DocumentModel documentModel, UserId userId) {
+        return documentRepository.incrementViewCount(documentModel.getId())
                 .flatMap(updatedDoc -> publishDocumentViewedEvent(updatedDoc, userId, ""))
-                .thenReturn(document);
+                .thenReturn(documentModel);
     }
 
-    private Mono<Document> cacheDocument(Document document) {
-        if (document.getId() == null) {
-            return Mono.just(document);
+    private Mono<DocumentModel> cacheDocument(DocumentModel documentModel) {
+        if (documentModel.getId() == null) {
+            return Mono.just(documentModel);
         }
 
-        String cacheKey = DOCUMENT_CACHE_PREFIX + document.getId();
-        return cacheRepository.set(cacheKey, document, DOCUMENT_CACHE_TTL)
-                .thenReturn(document);
+        String cacheKey = DOCUMENT_CACHE_PREFIX + documentModel.getId();
+        return cacheRepository.set(cacheKey, documentModel, DOCUMENT_CACHE_TTL)
+                .thenReturn(documentModel);
     }
 
-    private Mono<Document> invalidateDocumentCache(Document document) {
-        String cacheKey = DOCUMENT_CACHE_PREFIX + document.getId();
+    private Mono<DocumentModel> invalidateDocumentCache(DocumentModel documentModel) {
+        String cacheKey = DOCUMENT_CACHE_PREFIX + documentModel.getId();
         return cacheRepository.delete(cacheKey)
-                .then(cacheRepository.delete(USER_DOCUMENTS_CACHE_PREFIX + document.getOwnerId().getValue()))
+                .then(cacheRepository.delete(USER_DOCUMENTS_CACHE_PREFIX + documentModel.getOwnerId().getValue()))
                 .then(cacheRepository.delete(PUBLIC_DOCUMENTS_CACHE_KEY))
-                .thenReturn(document);
+                .thenReturn(documentModel);
     }
 
     private Mono<Void> invalidateDocumentCacheById(String documentId) {
@@ -554,83 +553,83 @@ public class DocumentManagementService implements DocumentManagementUseCase {
         return cacheRepository.delete(cacheKey);
     }
 
-    private Mono<DocumentResponse> convertToResponse(Document document) {
-        return userRepository.findById(document.getOwnerId())
+    private Mono<DocumentResponse> convertToResponse(DocumentModel documentModel) {
+        return userRepository.findById(documentModel.getOwnerId())
                 .map(owner -> new DocumentResponse(
-                        document.getId(),
-                        document.getTitle(),
-                        document.getContent(),
-                        document.getDocumentType(),
-                        document.getStatus(),
-                        document.getOwnerId(),
+                        documentModel.getId(),
+                        documentModel.getTitle(),
+                        documentModel.getContent(),
+                        documentModel.getDocumentType(),
+                        documentModel.getStatus(),
+                        documentModel.getOwnerId(),
                         owner.getFullName(),
-                        document.getIsPublic(),
-                        document.getTags(),
-                        document.getVersion(),
-                        document.getCollaborators(),
-                        document.getViewCount(),
-                        document.getLikeCount(),
-                        document.getCreatedAt(),
-                        document.getUpdatedAt(),
-                        document.getPublishedAt(),
-                        document.getLastModifiedBy(),
+                        documentModel.getIsPublic(),
+                        documentModel.getTags(),
+                        documentModel.getVersion(),
+                        documentModel.getCollaborators(),
+                        documentModel.getViewCount(),
+                        documentModel.getLikeCount(),
+                        documentModel.getCreatedAt(),
+                        documentModel.getUpdatedAt(),
+                        documentModel.getPublishedAt(),
+                        documentModel.getLastModifiedBy(),
                         true, // canEdit - calcular según permisos
                         true, // canDelete - calcular según permisos
                         true  // canShare - calcular según permisos
                 ))
                 .defaultIfEmpty(new DocumentResponse(
-                        document.getId(),
-                        document.getTitle(),
-                        document.getContent(),
-                        document.getDocumentType(),
-                        document.getStatus(),
-                        document.getOwnerId(),
+                        documentModel.getId(),
+                        documentModel.getTitle(),
+                        documentModel.getContent(),
+                        documentModel.getDocumentType(),
+                        documentModel.getStatus(),
+                        documentModel.getOwnerId(),
                         "Unknown User",
-                        document.getIsPublic(),
-                        document.getTags(),
-                        document.getVersion(),
-                        document.getCollaborators(),
-                        document.getViewCount(),
-                        document.getLikeCount(),
-                        document.getCreatedAt(),
-                        document.getUpdatedAt(),
-                        document.getPublishedAt(),
-                        document.getLastModifiedBy(),
+                        documentModel.getIsPublic(),
+                        documentModel.getTags(),
+                        documentModel.getVersion(),
+                        documentModel.getCollaborators(),
+                        documentModel.getViewCount(),
+                        documentModel.getLikeCount(),
+                        documentModel.getCreatedAt(),
+                        documentModel.getUpdatedAt(),
+                        documentModel.getPublishedAt(),
+                        documentModel.getLastModifiedBy(),
                         false, false, false
                 ));
     }
 
-    private Mono<DocumentSummaryResponse> convertToSummaryResponse(Document document) {
-        return userRepository.findById(document.getOwnerId())
+    private Mono<DocumentSummaryResponse> convertToSummaryResponse(DocumentModel documentModel) {
+        return userRepository.findById(documentModel.getOwnerId())
                 .map(owner -> new DocumentSummaryResponse(
-                        document.getId(),
-                        document.getTitle(),
-                        document.getDocumentType(),
-                        document.getStatus(),
-                        document.getOwnerId(),
+                        documentModel.getId(),
+                        documentModel.getTitle(),
+                        documentModel.getDocumentType(),
+                        documentModel.getStatus(),
+                        documentModel.getOwnerId(),
                         owner.getFullName(),
-                        document.getIsPublic(),
-                        document.getTags(),
-                        document.getViewCount(),
-                        document.getLikeCount(),
-                        document.getCreatedAt(),
-                        document.getUpdatedAt(),
-                        generateExcerpt(document.getContent())
+                        documentModel.getIsPublic(),
+                        documentModel.getTags(),
+                        documentModel.getViewCount(),
+                        documentModel.getLikeCount(),
+                        documentModel.getCreatedAt(),
+                        documentModel.getUpdatedAt(),
+                        generateExcerpt(documentModel.getContent())
                 ))
                 .defaultIfEmpty(new DocumentSummaryResponse(
-                        document.getId(),
-                        document.getTitle(),
-                        document.getDocumentType(),
-                        document.getStatus(),
-                        document.getOwnerId(),
+                        documentModel.getId(),
+                        documentModel.getTitle(),
+                        documentModel.getDocumentType(),
+                        documentModel.getStatus(),
+                        documentModel.getOwnerId(),
                         "Unknown User",
-                        document.getIsPublic(),
-                        document.getTags(),
-                        document.getViewCount(),
-                        document.getLikeCount(),
-                        document.getCreatedAt(),
-                        document.getUpdatedAt(),
-                        generateExcerpt(document.getContent())
+                        documentModel.getIsPublic(),
+                        documentModel.getTags(),
+                        documentModel.getViewCount(),
+                        documentModel.getLikeCount(),
+                        documentModel.getCreatedAt(),
+                        documentModel.getUpdatedAt(),
+                        generateExcerpt(documentModel.getContent())
                 ));
     }
 
@@ -640,15 +639,15 @@ public class DocumentManagementService implements DocumentManagementUseCase {
         return text.length() > 200 ? text.substring(0, 200) + "..." : text;
     }
 
-    private Mono<DocumentExportResponse> convertDocumentToFormat(Document document, ExportFormat format) {
+    private Mono<DocumentExportResponse> convertDocumentToFormat(DocumentModel documentModel, ExportFormat format) {
         return Mono.fromCallable(() -> {
             // En una implementación real, convertirías el documento al formato solicitado
-            String content = document.getContent().getAllText();
+            String content = documentModel.getContent().getAllText();
             byte[] bytes = content.getBytes();
-            String fileName = document.getTitle() + "." + format.getExtension();
+            String fileName = documentModel.getTitle() + "." + format.getExtension();
 
             return new DocumentExportResponse(
-                    document.getId(),
+                    documentModel.getId(),
                     format,
                     bytes,
                     fileName,
@@ -662,131 +661,131 @@ public class DocumentManagementService implements DocumentManagementUseCase {
      * Eventos de dominio
      */
 
-    private Mono<Document> publishDocumentCreatedEvent(Document document) {
+    private Mono<DocumentModel> publishDocumentCreatedEvent(DocumentModel documentModel) {
         DocumentEvents.DocumentCreated event = DocumentEvents.DocumentCreated.builder()
-                .documentId(document.getId())
-                .title(document.getTitle())
-                .documentType(document.getDocumentType())
-                .ownerId(document.getOwnerId())
-                .isPublic(document.getIsPublic())
+                .documentId(documentModel.getId())
+                .title(documentModel.getTitle())
+                .documentType(documentModel.getDocumentType())
+                .ownerId(documentModel.getOwnerId())
+                .isPublic(documentModel.getIsPublic())
                 .build();
 
-        return eventPublisher.publish(event).thenReturn(document);
+        return eventPublisher.publish(event).thenReturn(documentModel);
     }
 
-    private Mono<Document> publishContentUpdatedEvent(Document document) {
+    private Mono<DocumentModel> publishContentUpdatedEvent(DocumentModel documentModel) {
         DocumentEvents.DocumentContentUpdated event = DocumentEvents.DocumentContentUpdated.builder()
-                .documentId(document.getId())
-                .newVersion(document.getVersion())
-                .modifiedBy(document.getLastModifiedBy())
-                .contentType(document.getContent().getType())
-                .contentLength(document.getContent().getLength())
+                .documentId(documentModel.getId())
+                .newVersion(documentModel.getVersion())
+                .modifiedBy(documentModel.getLastModifiedBy())
+                .contentType(documentModel.getContent().getType())
+                .contentLength(documentModel.getContent().getLength())
                 .build();
 
-        return eventPublisher.publish(event).thenReturn(document);
+        return eventPublisher.publish(event).thenReturn(documentModel);
     }
 
-    private Mono<Document> publishTitleUpdatedEvent(Document document, String oldTitle) {
+    private Mono<DocumentModel> publishTitleUpdatedEvent(DocumentModel documentModel, String oldTitle) {
         DocumentEvents.DocumentTitleUpdated event = DocumentEvents.DocumentTitleUpdated.builder()
-                .documentId(document.getId())
+                .documentId(documentModel.getId())
                 .oldTitle(oldTitle)
-                .newTitle(document.getTitle())
-                .modifiedBy(document.getLastModifiedBy())
+                .newTitle(documentModel.getTitle())
+                .modifiedBy(documentModel.getLastModifiedBy())
                 .build();
 
-        return eventPublisher.publish(event).thenReturn(document);
+        return eventPublisher.publish(event).thenReturn(documentModel);
     }
 
-    private Mono<Document> publishDocumentPublishedEvent(Document document) {
+    private Mono<DocumentModel> publishDocumentPublishedEvent(DocumentModel documentModel) {
         DocumentEvents.DocumentPublished event = DocumentEvents.DocumentPublished.builder()
-                .documentId(document.getId())
-                .title(document.getTitle())
-                .publishedBy(document.getLastModifiedBy())
-                .publishedAt(document.getPublishedAt())
+                .documentId(documentModel.getId())
+                .title(documentModel.getTitle())
+                .publishedBy(documentModel.getLastModifiedBy())
+                .publishedAt(documentModel.getPublishedAt())
                 .build();
 
-        return eventPublisher.publish(event).thenReturn(document);
+        return eventPublisher.publish(event).thenReturn(documentModel);
     }
 
-    private Mono<Document> publishDocumentArchivedEvent(Document document, UserId archivedBy, String reason) {
+    private Mono<DocumentModel> publishDocumentArchivedEvent(DocumentModel documentModel, UserId archivedBy, String reason) {
         DocumentEvents.DocumentArchived event = DocumentEvents.DocumentArchived.builder()
-                .documentId(document.getId())
-                .title(document.getTitle())
+                .documentId(documentModel.getId())
+                .title(documentModel.getTitle())
                 .archivedBy(archivedBy)
-                .archivedAt(document.getArchivedAt())
+                .archivedAt(documentModel.getArchivedAt())
                 .reason(reason)
                 .build();
 
-        return eventPublisher.publish(event).thenReturn(document);
+        return eventPublisher.publish(event).thenReturn(documentModel);
     }
 
-    private Mono<Document> publishDocumentDeletedEvent(Document document, UserId deletedBy) {
+    private Mono<DocumentModel> publishDocumentDeletedEvent(DocumentModel documentModel, UserId deletedBy) {
         DocumentEvents.DocumentDeleted event = DocumentEvents.DocumentDeleted.builder()
-                .documentId(document.getId())
-                .title(document.getTitle())
+                .documentId(documentModel.getId())
+                .title(documentModel.getTitle())
                 .deletedBy(deletedBy)
                 .deletedAt(LocalDateTime.now())
                 .build();
 
-        return eventPublisher.publish(event).thenReturn(document);
+        return eventPublisher.publish(event).thenReturn(documentModel);
     }
 
-    private Mono<Document> publishCollaboratorAddedEvent(Document document, UserId collaboratorId, UserId addedBy) {
+    private Mono<DocumentModel> publishCollaboratorAddedEvent(DocumentModel documentModel, UserId collaboratorId, UserId addedBy) {
         DocumentEvents.DocumentCollaboratorAdded event = DocumentEvents.DocumentCollaboratorAdded.builder()
-                .documentId(document.getId())
+                .documentId(documentModel.getId())
                 .collaboratorId(collaboratorId)
                 .addedBy(addedBy)
                 .permission("WRITE")
                 .build();
 
-        return eventPublisher.publish(event).thenReturn(document);
+        return eventPublisher.publish(event).thenReturn(documentModel);
     }
 
-    private Mono<Document> publishCollaboratorRemovedEvent(Document document, UserId collaboratorId, UserId removedBy) {
+    private Mono<DocumentModel> publishCollaboratorRemovedEvent(DocumentModel documentModel, UserId collaboratorId, UserId removedBy) {
         DocumentEvents.DocumentCollaboratorRemoved event = DocumentEvents.DocumentCollaboratorRemoved.builder()
-                .documentId(document.getId())
+                .documentId(documentModel.getId())
                 .collaboratorId(collaboratorId)
                 .removedBy(removedBy)
                 .build();
 
-        return eventPublisher.publish(event).thenReturn(document);
+        return eventPublisher.publish(event).thenReturn(documentModel);
     }
 
-    private Mono<Document> publishDocumentViewedEvent(Document document, UserId viewedBy, String ipAddress) {
+    private Mono<DocumentModel> publishDocumentViewedEvent(DocumentModel documentModel, UserId viewedBy, String ipAddress) {
         DocumentEvents.DocumentViewed event = DocumentEvents.DocumentViewed.builder()
-                .documentId(document.getId())
+                .documentId(documentModel.getId())
                 .viewedBy(viewedBy)
                 .viewedAt(LocalDateTime.now())
                 .ipAddress(ipAddress)
                 .build();
 
-        return eventPublisher.publish(event).thenReturn(document);
+        return eventPublisher.publish(event).thenReturn(documentModel);
     }
 
-    private Mono<Document> publishDocumentLikedEvent(Document document, UserId likedBy) {
+    private Mono<DocumentModel> publishDocumentLikedEvent(DocumentModel documentModel, UserId likedBy) {
         DocumentEvents.DocumentLiked event = DocumentEvents.DocumentLiked.builder()
-                .documentId(document.getId())
+                .documentId(documentModel.getId())
                 .likedBy(likedBy)
                 .likedAt(LocalDateTime.now())
                 .build();
 
-        return eventPublisher.publish(event).thenReturn(document);
+        return eventPublisher.publish(event).thenReturn(documentModel);
     }
 
-    private Mono<Document> publishTagsUpdatedEvent(Document document, Set<String> oldTags) {
+    private Mono<DocumentModel> publishTagsUpdatedEvent(DocumentModel documentModel, Set<String> oldTags) {
         DocumentEvents.DocumentTagsUpdated event = DocumentEvents.DocumentTagsUpdated.builder()
-                .documentId(document.getId())
+                .documentId(documentModel.getId())
                 .oldTags(oldTags)
-                .newTags(document.getTags())
-                .modifiedBy(document.getLastModifiedBy())
+                .newTags(documentModel.getTags())
+                .modifiedBy(documentModel.getLastModifiedBy())
                 .build();
 
-        return eventPublisher.publish(event).thenReturn(document);
+        return eventPublisher.publish(event).thenReturn(documentModel);
     }
 
     /**
      * Records auxiliares
      */
-    private record DocumentWithOldTitle(Document document, String oldTitle) {}
-    private record DocumentWithOldTags(Document document, Set<String> oldTags) {}
+    private record DocumentWithOldTitle(DocumentModel documentModel, String oldTitle) {}
+    private record DocumentWithOldTags(DocumentModel documentModel, Set<String> oldTags) {}
 }

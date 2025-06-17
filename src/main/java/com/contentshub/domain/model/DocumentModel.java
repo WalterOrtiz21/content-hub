@@ -10,7 +10,7 @@ import lombok.With;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.mapping.Document as MongoDocument;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
@@ -24,8 +24,8 @@ import java.util.Set;
 @Value
 @Builder(toBuilder = true)
 @With
-@MongoDocument(collection = "documents")
-public class Document {
+@Document(collection = "documents")
+public class DocumentModel {
 
     @Id
     String id; // MongoDB ObjectId
@@ -87,8 +87,8 @@ public class Document {
     /**
      * Factory method para crear un nuevo documento
      */
-    public static Document createNew(String title, DocumentContent content, UserId ownerId, DocumentType documentType) {
-        return Document.builder()
+    public static DocumentModel createNew(String title, DocumentContent content, UserId ownerId, DocumentType documentType) {
+        return DocumentModel.builder()
                 .title(title)
                 .content(content)
                 .ownerId(ownerId)
@@ -108,9 +108,9 @@ public class Document {
     /**
      * Factory method para crear desde template
      */
-    public static Document createFromTemplate(String title, DocumentContent templateContent,
-                                              UserId ownerId, DocumentType documentType) {
-        return Document.builder()
+    public static DocumentModel createFromTemplate(String title, DocumentContent templateContent,
+                                                   UserId ownerId, DocumentType documentType) {
+        return DocumentModel.builder()
                 .title(title)
                 .content(templateContent)
                 .ownerId(ownerId)
@@ -130,7 +130,7 @@ public class Document {
     /**
      * Actualizar contenido del documento
      */
-    public Document updateContent(DocumentContent newContent, UserId modifiedBy) {
+    public DocumentModel updateContent(DocumentContent newContent, UserId modifiedBy) {
         return this.withContent(newContent)
                 .withLastModifiedBy(modifiedBy)
                 .withVersion(version + 1);
@@ -139,7 +139,7 @@ public class Document {
     /**
      * Actualizar título
      */
-    public Document updateTitle(String newTitle, UserId modifiedBy) {
+    public DocumentModel updateTitle(String newTitle, UserId modifiedBy) {
         return this.withTitle(newTitle)
                 .withLastModifiedBy(modifiedBy);
     }
@@ -147,7 +147,7 @@ public class Document {
     /**
      * Publicar documento
      */
-    public Document publish(UserId publishedBy) {
+    public DocumentModel publish(UserId publishedBy) {
         return this.withStatus(DocumentStatus.PUBLISHED)
                 .withPublishedAt(LocalDateTime.now())
                 .withLastModifiedBy(publishedBy);
@@ -156,7 +156,7 @@ public class Document {
     /**
      * Archivar documento
      */
-    public Document archive(UserId archivedBy) {
+    public DocumentModel archive(UserId archivedBy) {
         return this.withStatus(DocumentStatus.ARCHIVED)
                 .withArchivedAt(LocalDateTime.now())
                 .withLastModifiedBy(archivedBy);
@@ -165,7 +165,7 @@ public class Document {
     /**
      * Restaurar documento archivado
      */
-    public Document restore(UserId restoredBy) {
+    public DocumentModel restore(UserId restoredBy) {
         return this.withStatus(DocumentStatus.DRAFT)
                 .withArchivedAt(null)
                 .withLastModifiedBy(restoredBy);
@@ -174,7 +174,7 @@ public class Document {
     /**
      * Hacer público
      */
-    public Document makePublic(UserId modifiedBy) {
+    public DocumentModel makePublic(UserId modifiedBy) {
         return this.withIsPublic(true)
                 .withLastModifiedBy(modifiedBy);
     }
@@ -182,7 +182,7 @@ public class Document {
     /**
      * Hacer privado
      */
-    public Document makePrivate(UserId modifiedBy) {
+    public DocumentModel makePrivate(UserId modifiedBy) {
         return this.withIsPublic(false)
                 .withLastModifiedBy(modifiedBy);
     }
@@ -190,7 +190,7 @@ public class Document {
     /**
      * Agregar colaborador
      */
-    public Document addCollaborator(UserId collaboratorId, UserId modifiedBy) {
+    public DocumentModel addCollaborator(UserId collaboratorId, UserId modifiedBy) {
         Set<UserId> newCollaborators = new java.util.HashSet<>(collaborators != null ? collaborators : Set.of());
         newCollaborators.add(collaboratorId);
         return this.withCollaborators(newCollaborators)
@@ -200,7 +200,7 @@ public class Document {
     /**
      * Remover colaborador
      */
-    public Document removeCollaborator(UserId collaboratorId, UserId modifiedBy) {
+    public DocumentModel removeCollaborator(UserId collaboratorId, UserId modifiedBy) {
         Set<UserId> newCollaborators = new java.util.HashSet<>(collaborators != null ? collaborators : Set.of());
         newCollaborators.remove(collaboratorId);
         return this.withCollaborators(newCollaborators)
@@ -210,7 +210,7 @@ public class Document {
     /**
      * Agregar tags
      */
-    public Document addTags(Set<String> newTags, UserId modifiedBy) {
+    public DocumentModel addTags(Set<String> newTags, UserId modifiedBy) {
         Set<String> allTags = new java.util.HashSet<>(tags != null ? tags : Set.of());
         allTags.addAll(newTags);
         return this.withTags(allTags)
@@ -220,7 +220,7 @@ public class Document {
     /**
      * Remover tags
      */
-    public Document removeTags(Set<String> tagsToRemove, UserId modifiedBy) {
+    public DocumentModel removeTags(Set<String> tagsToRemove, UserId modifiedBy) {
         Set<String> newTags = new java.util.HashSet<>(tags != null ? tags : Set.of());
         newTags.removeAll(tagsToRemove);
         return this.withTags(newTags)
@@ -230,21 +230,21 @@ public class Document {
     /**
      * Incrementar contador de vistas
      */
-    public Document incrementViewCount() {
+    public DocumentModel incrementViewCount() {
         return this.withViewCount((viewCount != null ? viewCount : 0L) + 1);
     }
 
     /**
      * Incrementar contador de likes
      */
-    public Document incrementLikeCount() {
+    public DocumentModel incrementLikeCount() {
         return this.withLikeCount((likeCount != null ? likeCount : 0L) + 1);
     }
 
     /**
      * Decrementar contador de likes
      */
-    public Document decrementLikeCount() {
+    public DocumentModel decrementLikeCount() {
         long currentCount = likeCount != null ? likeCount : 0L;
         return this.withLikeCount(Math.max(0L, currentCount - 1));
     }

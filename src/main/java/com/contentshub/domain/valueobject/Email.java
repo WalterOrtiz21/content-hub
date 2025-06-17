@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * Value Object para direcciones de email
  * Encapsula y valida direcciones de correo electrónico
  */
-@Value(staticConstructor = "of")
+@Value
 public class Email {
 
     private static final Pattern VALID_EMAIL_PATTERN =

@@ -8,7 +8,7 @@ import lombok.Value;
  * Value Object para identificador de usuario
  * Encapsula y valida los IDs de usuario
  */
-@Value(staticConstructor = "of")
+@Value
 public class UserId {
 
     Long value;

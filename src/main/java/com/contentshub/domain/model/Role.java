@@ -9,7 +9,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.security.Permission;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -44,8 +43,8 @@ public class Role {
     @Column("updated_at")
     LocalDateTime updatedAt;
 
-    // Permisos - Se cargan por separado debido a la relación many-to-many
-    Set<Permission> permissions;
+    // CAMBIO: Usar el tipo correcto de Permission
+    Set<com.contentshub.domain.model.Permission> permissions;
 
     /**
      * Factory method para crear un nuevo rol
@@ -101,7 +100,7 @@ public class Role {
         if (permissions == null) return Set.of();
 
         return permissions.stream()
-                .map(Permission::getName)
+                .map(com.contentshub.domain.model.Permission::getName)
                 .collect(java.util.stream.Collectors.toSet());
     }
 

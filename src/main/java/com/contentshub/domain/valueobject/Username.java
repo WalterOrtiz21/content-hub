@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * Value Object para nombre de usuario
  * Encapsula y valida los nombres de usuario
  */
-@Value(staticConstructor = "of")
+@Value
 public class Username {
 
     private static final Pattern VALID_USERNAME_PATTERN =
